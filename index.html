@@ -758,6 +758,105 @@
 
 
 
+    /* ══════════════════════════════════ PROBLEMA ══════════════════════════════════ */
+    #problema {
+      position: relative;
+      background: var(--carbon);
+      border-bottom: var(--border);
+      isolation: isolate;
+    }
+
+    .problema-inner {
+      display: flex;
+      align-items: flex-start;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .prob-left {
+      position: sticky;
+      top: 0;
+      width: 48%;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 64px;
+      border-right: var(--border);
+    }
+
+    .prob-left .label { margin-bottom: 20px; display: inline-block; }
+
+    .prob-left h2 {
+      font-size: clamp(1.7rem, 2.8vw, 2.6rem);
+      margin-bottom: 20px;
+    }
+
+    .prob-left p { font-size: 0.95rem; line-height: 1.75; max-width: 480px; }
+
+    .prob-right {
+      width: 52%;
+      padding: 100px 64px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .err-card {
+      position: relative;
+      border: var(--border);
+      border-radius: 2px;
+      padding: 32px;
+      background: rgba(0, 0, 0, 0.25);
+      transition: background 0.4s var(--ease), border-color 0.4s var(--ease);
+      overflow: hidden;
+    }
+
+    .err-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(230, 76, 40, 0.8), var(--flame), transparent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.55s var(--ease);
+    }
+
+    .err-card:hover { background: rgba(230, 76, 40, 0.04); border-color: rgba(230, 76, 40, 0.32); }
+    .err-card:hover::before { transform: scaleX(1); }
+
+    .err-badge {
+      display: inline-block;
+      font-family: var(--pixel);
+      font-size: 0.9rem;
+      color: rgba(210, 70, 70, 0.65);
+      border: 1px solid rgba(210, 70, 70, 0.3);
+      padding: 2px 10px;
+      margin-bottom: 14px;
+      transition: color 0.3s var(--ease), border-color 0.3s var(--ease);
+    }
+
+    .err-card:hover .err-badge { color: rgba(230, 76, 40, 0.85); border-color: rgba(230, 76, 40, 0.45); }
+
+    .err-card h3 { font-family: var(--mono); font-size: 1.05rem; color: var(--white); margin-bottom: 8px; }
+    .err-card p  { font-size: 0.95rem; color: var(--graphite); line-height: 1.65; }
+
+    @media (max-width: 1024px) {
+      .problema-inner { flex-direction: column; }
+      .prob-left, .prob-right { width: 100%; }
+      .prob-left { position: static; height: auto; padding: 80px 32px 32px; border-right: 0; }
+      .prob-right { padding: 32px 32px 80px; }
+    }
+
+    @media (max-width: 600px) {
+      .prob-left { padding: 60px 24px 24px; }
+      .prob-right { padding: 24px 24px 60px; gap: 16px; }
+      .err-card { padding: 24px; }
+    }
+
     /* ══════════════════════════════════ REDUCED MOTION ══════════════════════════════════ */
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
@@ -860,6 +959,38 @@
           <span class="hero-marquee__item">STRV</span>
           <span class="hero-marquee__item">Bloom</span>
           <span class="hero-marquee__item">STRV</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="problema" data-bg="carbon" aria-labelledby="prob-heading">
+      <div class="problema-inner">
+        <div class="prob-left">
+          <span class="label reveal" data-i18n="prob-label">// ERR_LOG: HIRING</span>
+          <h2 id="prob-heading" class="reveal" data-i18n="prob-h2">Contratar pessoa sênior é, na maior parte, evitar errar feio.</h2>
+          <p class="reveal" data-i18n="prob-sub">Você precisa de gente sênior, agora. Cada caminho tem o jeito específico de dar ruim. Esses são os que aparecem.</p>
+        </div>
+        <div class="prob-right">
+          <article class="err-card reveal">
+            <span class="err-badge" data-i18n="prob-c1-badge">[ ERR: TRUST ]</span>
+            <h3 data-i18n="prob-c1-title">Confiança no fornecedor</h3>
+            <p data-i18n="prob-c1-body">Primeira vez com esse fornecedor. O portfólio é bom. A primeira call confirma. Depois disso, é aposta.</p>
+          </article>
+          <article class="err-card reveal" style="--i: 1">
+            <span class="err-badge" data-i18n="prob-c2-badge">[ ERR: SPEED ]</span>
+            <h3 data-i18n="prob-c2-title">Velocidade</h3>
+            <p data-i18n="prob-c2-body">Vaga sênior aberta. Agenda cheia de entrevista. Cada semana é um sprint escorrendo.</p>
+          </article>
+          <article class="err-card reveal" style="--i: 2">
+            <span class="err-badge" data-i18n="prob-c3-badge">[ ERR: SENIORITY ]</span>
+            <h3 data-i18n="prob-c3-title">Senioridade real</h3>
+            <p data-i18n="prob-c3-body">Sênior no LinkedIn. Pleno na sprint. Você descobre na terceira semana.</p>
+          </article>
+          <article class="err-card reveal" style="--i: 3">
+            <span class="err-badge" data-i18n="prob-c4-badge">[ ERR: NO_BACKUP ]</span>
+            <h3 data-i18n="prob-c4-title">Cobertura</h3>
+            <p data-i18n="prob-c4-body">Pessoa não pode trabalhar hoje. Férias, médico, qualquer coisa. Quem cobre? Pra quem você liga?</p>
+          </article>
         </div>
       </div>
     </section>
@@ -1177,6 +1308,21 @@
       // ── i18n — pt/en toggle ─────────────────
       const translations = {
         pt: {
+          "prob-label": "// ERR_LOG: HIRING",
+          "prob-h2": "Contratar pessoa sênior é, na maior parte, evitar errar feio.",
+          "prob-sub": "Você precisa de gente sênior, agora. Cada caminho tem o jeito específico de dar ruim. Esses são os que aparecem.",
+          "prob-c1-badge": "[ ERR: TRUST ]",
+          "prob-c1-title": "Confiança no fornecedor",
+          "prob-c1-body": "Primeira vez com esse fornecedor. O portfólio é bom. A primeira call confirma. Depois disso, é aposta.",
+          "prob-c2-badge": "[ ERR: SPEED ]",
+          "prob-c2-title": "Velocidade",
+          "prob-c2-body": "Vaga sênior aberta. Agenda cheia de entrevista. Cada semana é um sprint escorrendo.",
+          "prob-c3-badge": "[ ERR: SENIORITY ]",
+          "prob-c3-title": "Senioridade real",
+          "prob-c3-body": "Sênior no LinkedIn. Pleno na sprint. Você descobre na terceira semana.",
+          "prob-c4-badge": "[ ERR: NO_BACKUP ]",
+          "prob-c4-title": "Cobertura",
+          "prob-c4-body": "Pessoa não pode trabalhar hoje. Férias, médico, qualquer coisa. Quem cobre? Pra quem você liga?",
           'skip-link': 'Pular para o conteúdo',
           'nav-cta': 'Falar com a Taller',
           'hero-eyebrow': '// EXEC: TALLER_ALLOCATION',
@@ -1186,6 +1332,21 @@
           'hero-clients-label': 'clientes atuais'
         },
         en: {
+          "prob-label": "// ERR_LOG: HIRING",
+          "prob-h2": "Hiring senior engineers is mostly about avoiding bad calls.",
+          "prob-sub": "You need senior developers, now. Every path forward has its own way of going wrong. These are the ones that actually show up.",
+          "prob-c1-badge": "[ ERR: TRUST ]",
+          "prob-c1-title": "Trust",
+          "prob-c1-body": "First time with this vendor. The portfolio looks good. The first call confirms. After that, you're guessing.",
+          "prob-c2-badge": "[ ERR: SPEED ]",
+          "prob-c2-title": "Speed",
+          "prob-c2-body": "Senior role open. Calendar full of interviews. Each week is a sprint slipping.",
+          "prob-c3-badge": "[ ERR: SENIORITY ]",
+          "prob-c3-title": "Real seniority",
+          "prob-c3-body": "Senior on the LinkedIn profile. Mid-level in the sprint. You only find out in week three.",
+          "prob-c4-badge": "[ ERR: NO_BACKUP ]",
+          "prob-c4-title": "Backup",
+          "prob-c4-body": "Person can't work today. Vacation, doctor, anything. Who covers? Who do you call?",
           'skip-link': 'Skip to content',
           'nav-cta': 'Talk to us',
           'hero-eyebrow': '// EXEC: TALLER_ALLOCATION',
