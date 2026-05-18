@@ -74,9 +74,7 @@
     rel="stylesheet">
 
   <style>
-    /* ══════════════════════════════════
-       TOKENS
-       ══════════════════════════════════ */
+    /* ══════════════════════════════════ TOKENS ══════════════════════════════════ */
     :root {
       --black: #000000;
       --carbon: #1B1B1D;
@@ -99,13 +97,12 @@
       --ease: cubic-bezier(0.19, 1, 0.22, 1);
       --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
       --ease-curtain: cubic-bezier(0.76, 0, 0.24, 1);
+      --ease-reveal: cubic-bezier(0.16, 1, 0.3, 1);
 
       --border: 1px solid var(--graphite-30);
     }
 
-    /* ══════════════════════════════════
-       RESET + BASE
-       ══════════════════════════════════ */
+    /* ══════════════════════════════════ RESET + BASE ══════════════════════════════════ */
     *,
     *::before,
     *::after {
@@ -131,35 +128,16 @@
       text-rendering: optimizeLegibility;
     }
 
-    body.loading {
-      overflow: hidden;
-    }
+    body.loading { overflow: hidden; }
 
-    img,
-    svg {
-      display: block;
-      max-width: 100%;
-    }
+    img, svg { display: block; max-width: 100%; }
 
-    button {
-      font: inherit;
-      color: inherit;
-      background: none;
-      border: 0;
-    }
+    button { font: inherit; color: inherit; background: none; border: 0; }
 
-    ::selection {
-      background: var(--gold);
-      color: var(--black);
-    }
+    ::selection { background: var(--gold); color: var(--black); }
 
-    /* ══════════════════════════════════
-       TYPOGRAPHY
-       ══════════════════════════════════ */
-    h1,
-    h2,
-    h3,
-    h4 {
+    /* ══════════════════════════════════ TYPOGRAPHY ══════════════════════════════════ */
+    h1, h2, h3, h4 {
       font-family: var(--mono);
       font-weight: 700;
       line-height: 1.1;
@@ -172,17 +150,13 @@
       line-height: 1.7;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+    a { color: inherit; text-decoration: none; }
 
     .label {
       font-family: var(--pixel);
       font-size: 1.05rem;
       color: var(--graphite);
       letter-spacing: 0.08em;
-      text-transform: none;
     }
 
     .skip-link {
@@ -199,13 +173,9 @@
       transition: top 0.2s var(--ease);
     }
 
-    .skip-link:focus {
-      top: 8px;
-    }
+    .skip-link:focus { top: 8px; }
 
-    /* ══════════════════════════════════
-       SCROLL PROGRESS BAR
-       ══════════════════════════════════ */
+    /* ══════════════════════════════════ SCROLL PROGRESS ══════════════════════════════════ */
     #scroll-progress {
       position: fixed;
       top: 0;
@@ -220,9 +190,7 @@
       will-change: transform;
     }
 
-    /* ══════════════════════════════════
-       LOADER (curtain)
-       ══════════════════════════════════ */
+    /* ══════════════════════════════════ LOADER ══════════════════════════════════ */
     #loader {
       position: fixed;
       inset: 0;
@@ -231,9 +199,7 @@
       pointer-events: all;
     }
 
-    #loader.done {
-      pointer-events: none;
-    }
+    #loader.done { pointer-events: none; }
 
     .loader-half {
       width: 50%;
@@ -242,13 +208,8 @@
       transition: transform 1s var(--ease-curtain);
     }
 
-    #loader.done .loader-left {
-      transform: translateX(-100%);
-    }
-
-    #loader.done .loader-right {
-      transform: translateX(100%);
-    }
+    #loader.done .loader-left  { transform: translateX(-100%); }
+    #loader.done .loader-right { transform: translateX(100%); }
 
     .loader-logo {
       position: fixed;
@@ -260,32 +221,18 @@
       transition: opacity 0.35s ease;
     }
 
-    .loader-logo svg {
-      height: 32px;
-      width: auto;
-      display: block;
-    }
+    .loader-logo svg { height: 32px; width: auto; display: block; }
 
-    #loader.done .loader-logo {
-      opacity: 0;
-    }
+    #loader.done .loader-logo { opacity: 0; }
 
-    /* ══════════════════════════════════
-       CUSTOM CURSOR
-       ══════════════════════════════════ */
+    /* ══════════════════════════════════ CUSTOM CURSOR ══════════════════════════════════ */
     @media (hover: hover) and (pointer: fine) {
-      body:not(.loading) {
-        cursor: none;
-      }
-
+      body:not(.loading) { cursor: none; }
       body:not(.loading) a,
-      body:not(.loading) button {
-        cursor: none;
-      }
+      body:not(.loading) button { cursor: none; }
     }
 
-    #cursor-dot,
-    #cursor-ring {
+    #cursor-dot, #cursor-ring {
       position: fixed;
       top: 0;
       left: 0;
@@ -297,9 +244,7 @@
     }
 
     body.cursor-ready #cursor-dot,
-    body.cursor-ready #cursor-ring {
-      opacity: 1;
-    }
+    body.cursor-ready #cursor-ring { opacity: 1; }
 
     #cursor-dot {
       width: 6px;
@@ -319,9 +264,7 @@
         width 0.3s var(--ease), height 0.3s var(--ease), margin 0.3s var(--ease);
     }
 
-    body.cursor-ready #cursor-ring {
-      opacity: 0.45;
-    }
+    body.cursor-ready #cursor-ring { opacity: 0.45; }
 
     #cursor-ring.hovering {
       border-color: var(--gold);
@@ -332,17 +275,10 @@
     }
 
     @media (hover: none), (pointer: coarse) {
-      #cursor-dot,
-      #cursor-ring {
-        display: none;
-      }
+      #cursor-dot, #cursor-ring { display: none; }
     }
 
-    /* ══════════════════════════════════
-       BUTTONS — design system
-       ══════════════════════════════════ */
-
-    /* Base */
+    /* ══════════════════════════════════ BUTTONS ══════════════════════════════════ */
     .btn {
       position: relative;
       display: inline-flex;
@@ -364,26 +300,20 @@
     }
 
     @media (hover: hover) and (pointer: fine) {
-      .btn {
-        cursor: none;
-      }
+      .btn { cursor: none; }
     }
 
-    /* Sizes */
-    .btn-mini { padding: 6px 14px; font-size: 0.72rem; }
+    .btn-mini { padding: 6px 14px;  font-size: 0.72rem; }
     .btn-sm   { padding: 10px 22px; font-size: 0.78rem; }
     .btn-lg   { padding: 16px 36px; font-size: 0.92rem; }
     .btn-xl   { padding: 20px 48px; font-size: 1rem; }
 
-    /* Primary — heat gradient with pulsating glow */
-    .btn-primary,
-    .btn-gold {
+    .btn-primary, .btn-gold {
       background: var(--heat-gradient);
       color: var(--white);
     }
 
-    .btn-primary::before,
-    .btn-gold::before {
+    .btn-primary::before, .btn-gold::before {
       content: '';
       position: absolute;
       inset: -3px;
@@ -396,134 +326,93 @@
       animation: glow-fade 3s ease-in-out infinite;
     }
 
-    .btn-primary:hover::before,
-    .btn-gold:hover::before {
+    .btn-primary:hover::before, .btn-gold:hover::before {
       opacity: 0.55;
       filter: blur(18px);
     }
 
-    .btn-primary:hover,
-    .btn-primary:active,
-    .btn-gold:hover,
-    .btn-gold:active {
+    .btn-primary:hover, .btn-primary:active,
+    .btn-gold:hover, .btn-gold:active {
       background: linear-gradient(90deg, var(--flame), #b01a20);
-      color: var(--white);
     }
 
-    .btn-primary:focus-visible,
-    .btn-gold:focus-visible {
+    .btn-primary:focus-visible, .btn-gold:focus-visible {
       outline: none;
       box-shadow: 0 0 0 3px rgba(230, 76, 40, 0.55);
     }
 
-    .btn-primary:disabled,
-    .btn-primary[aria-disabled="true"],
-    .btn-gold:disabled,
-    .btn-gold[aria-disabled="true"] {
+    .btn-primary:disabled, .btn-primary[aria-disabled="true"],
+    .btn-gold:disabled, .btn-gold[aria-disabled="true"] {
       background: linear-gradient(90deg, rgba(230, 76, 40, 0.35), rgba(218, 32, 55, 0.35));
       color: rgba(255, 255, 255, 0.45);
       pointer-events: none;
     }
 
-    .btn-primary:disabled::before,
-    .btn-primary[aria-disabled="true"]::before,
-    .btn-gold:disabled::before,
-    .btn-gold[aria-disabled="true"]::before {
-      opacity: 0;
-    }
+    .btn-primary:disabled::before, .btn-primary[aria-disabled="true"]::before,
+    .btn-gold:disabled::before, .btn-gold[aria-disabled="true"]::before { opacity: 0; }
 
-    /* Alternate — dark fill */
     .btn-alternate {
       background: #111111;
       color: var(--white);
     }
-
-    .btn-alternate:hover,
-    .btn-alternate:active {
-      background: #2a2a2a;
-    }
-
+    .btn-alternate:hover, .btn-alternate:active { background: #2a2a2a; }
     .btn-alternate:focus-visible {
       outline: none;
       box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
     }
-
-    .btn-alternate:disabled,
-    .btn-alternate[aria-disabled="true"] {
+    .btn-alternate:disabled, .btn-alternate[aria-disabled="true"] {
       background: #1a1a1a;
       color: rgba(255, 255, 255, 0.3);
       pointer-events: none;
     }
 
-    /* Secondary / Outline — ghost */
-    .btn-secondary,
-    .btn-outline {
+    .btn-secondary, .btn-outline {
       background: transparent;
       color: var(--silver);
       border-color: rgba(135, 135, 135, 0.45);
     }
-
-    .btn-secondary:hover,
-    .btn-secondary:active,
-    .btn-outline:hover,
-    .btn-outline:active {
+    .btn-secondary:hover, .btn-secondary:active,
+    .btn-outline:hover, .btn-outline:active {
       background: rgba(255, 255, 255, 0.06);
       border-color: var(--silver);
       color: var(--white);
     }
-
-    .btn-secondary:focus-visible,
-    .btn-outline:focus-visible {
+    .btn-secondary:focus-visible, .btn-outline:focus-visible {
       outline: none;
       border-color: var(--silver);
       box-shadow: 0 0 0 3px rgba(135, 135, 135, 0.3);
     }
-
-    .btn-secondary:disabled,
-    .btn-secondary[aria-disabled="true"],
-    .btn-outline:disabled,
-    .btn-outline[aria-disabled="true"] {
+    .btn-secondary:disabled, .btn-secondary[aria-disabled="true"],
+    .btn-outline:disabled, .btn-outline[aria-disabled="true"] {
       background: transparent;
       border-color: rgba(135, 135, 135, 0.2);
       color: rgba(135, 135, 135, 0.4);
       pointer-events: none;
     }
 
-    /* Alert — crimson */
     .btn-alert {
       background: #b71c2e;
       color: var(--white);
     }
-
-    .btn-alert:hover,
-    .btn-alert:active {
-      background: #8f1422;
-    }
-
+    .btn-alert:hover, .btn-alert:active { background: #8f1422; }
     .btn-alert:focus-visible {
       outline: none;
       box-shadow: 0 0 0 3px rgba(183, 28, 46, 0.5);
     }
-
-    .btn-alert:disabled,
-    .btn-alert[aria-disabled="true"] {
+    .btn-alert:disabled, .btn-alert[aria-disabled="true"] {
       background: rgba(183, 28, 46, 0.35);
       color: rgba(255, 255, 255, 0.4);
       pointer-events: none;
     }
 
-    /* Bracket decoration — keyboard-tic on primary hover */
     .bracket {
       font-family: var(--pixel);
       font-size: 1.1rem;
       opacity: 0;
       transition: opacity 0.3s var(--ease);
     }
-
     .btn-primary:hover .bracket,
-    .btn-gold:hover .bracket {
-      opacity: 1;
-    }
+    .btn-gold:hover .bracket { opacity: 1; }
 
     @keyframes glow-fade {
       0%, 100% { opacity: 0.25; filter: blur(12px); }
@@ -531,8 +420,122 @@
     }
 
     /* ══════════════════════════════════
-       REDUCED MOTION
+       MOTION PRIMITIVES
+       reveal · split text · line reveal · heat pulse · gold sweep
        ══════════════════════════════════ */
+
+    /* Reveal — translateY in */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.85s var(--ease-reveal), transform 0.85s var(--ease-reveal);
+      will-change: opacity, transform;
+    }
+
+    /* Reveal — translateX left */
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-36px);
+      transition: opacity 0.85s var(--ease-reveal), transform 0.85s var(--ease-reveal);
+      will-change: opacity, transform;
+    }
+
+    /* Reveal — translateX right */
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(36px);
+      transition: opacity 0.85s var(--ease-reveal), transform 0.85s var(--ease-reveal);
+      will-change: opacity, transform;
+    }
+
+    /* Reveal — scale up */
+    .reveal-scale {
+      opacity: 0;
+      transform: scale(0.94);
+      transition: opacity 0.85s var(--ease-reveal), transform 0.85s var(--ease-reveal);
+      will-change: opacity, transform;
+    }
+
+    .reveal.in,
+    .reveal-left.in,
+    .reveal-right.in,
+    .reveal-scale.in {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* Stagger via custom property (parent sets --i, children use it) */
+    .reveal[style*="--i"] {
+      transition-delay: calc(var(--i, 0) * 80ms);
+    }
+
+    /* Split text — each char fades in sequentially */
+    .split-ready {
+      visibility: hidden;
+    }
+
+    .split-ready.ready {
+      visibility: visible;
+    }
+
+    .split-ready .word {
+      display: inline-block;
+      overflow: hidden;
+      vertical-align: bottom;
+    }
+
+    .split-ready .char {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(0.6em);
+      transition: opacity 0.32s var(--ease), transform 0.55s var(--ease);
+      transition-delay: calc(var(--char-index, 0) * 16ms);
+    }
+
+    .split-ready.in .char {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Line reveal — clip-path top to bottom */
+    .line-reveal {
+      clip-path: inset(0 0 100% 0);
+      transition: clip-path 1.2s var(--ease);
+    }
+
+    .line-reveal.in {
+      clip-path: inset(0 0 0% 0);
+    }
+
+    /* Heat pulse — gradient clipped to text, shifting forever */
+    .heat-pulse {
+      background: var(--heat-gradient);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: heat-pulse-shift 3s ease-in-out infinite;
+    }
+
+    @keyframes heat-pulse-shift {
+      0%, 100% { background-position: 0% center; }
+      50%      { background-position: 100% center; }
+    }
+
+    /* Gold sweep — underline that grows on demand */
+    .gold {
+      color: var(--heat);
+      background: linear-gradient(90deg, var(--heat), var(--gold)) no-repeat left bottom;
+      background-size: 0% 2px;
+      transition: background-size 0.8s var(--ease);
+      padding-bottom: 2px;
+    }
+
+    .gold.sweep {
+      background-size: 100% 2px;
+    }
+
+    /* ══════════════════════════════════ REDUCED MOTION ══════════════════════════════════ */
     @media (prefers-reduced-motion: reduce) {
       *,
       *::before,
@@ -543,23 +546,21 @@
         scroll-behavior: auto !important;
       }
 
-      #loader {
-        display: none;
-      }
+      #loader { display: none; }
+      #cursor-dot, #cursor-ring { display: none; }
 
-      #cursor-dot,
-      #cursor-ring {
-        display: none;
+      .reveal, .reveal-left, .reveal-right, .reveal-scale,
+      .split-ready, .split-ready .char,
+      .line-reveal {
+        opacity: 1 !important;
+        transform: none !important;
+        clip-path: none !important;
+        visibility: visible !important;
       }
 
       @media (hover: hover) and (pointer: fine) {
-        body:not(.loading) {
-          cursor: auto;
-        }
-
-        .btn {
-          cursor: pointer;
-        }
+        body:not(.loading) { cursor: auto; }
+        .btn { cursor: pointer; }
       }
     }
   </style>
@@ -601,9 +602,7 @@
       if (document.readyState === 'complete') {
         requestAnimationFrame(finishLoad);
       } else {
-        window.addEventListener('load', () => {
-          requestAnimationFrame(finishLoad);
-        });
+        window.addEventListener('load', () => requestAnimationFrame(finishLoad));
       }
 
       // ── Scroll progress ─────────────────────
@@ -651,6 +650,72 @@
             ring.classList.remove('hovering');
           }
         });
+      }
+
+      // ── Split text — wraps each char in a <span> with --char-index ──
+      // Targets: any element with class "split-text" (becomes split-ready after processing)
+      document.querySelectorAll('.split-text').forEach((el) => {
+        const text = el.textContent;
+        el.textContent = '';
+        let charIndex = 0;
+
+        text.split(' ').forEach((word, wordIndex, words) => {
+          const wordSpan = document.createElement('span');
+          wordSpan.className = 'word';
+
+          [...word].forEach((ch) => {
+            const charSpan = document.createElement('span');
+            charSpan.className = 'char';
+            charSpan.style.setProperty('--char-index', charIndex++);
+            charSpan.textContent = ch;
+            wordSpan.appendChild(charSpan);
+          });
+
+          el.appendChild(wordSpan);
+          if (wordIndex < words.length - 1) el.appendChild(document.createTextNode(' '));
+        });
+
+        el.classList.remove('split-text');
+        el.classList.add('split-ready', 'ready');
+      });
+
+      // ── Reveal observer — adds .in when element enters viewport ──
+      const revealTargets = document.querySelectorAll(
+        '.reveal, .reveal-left, .reveal-right, .reveal-scale, .split-ready, .line-reveal'
+      );
+
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('in');
+              io.unobserve(entry.target);
+            }
+          });
+        }, {
+          threshold: 0.15,
+          rootMargin: '0px 0px -10% 0px',
+        });
+
+        revealTargets.forEach((el) => io.observe(el));
+      } else {
+        // Fallback: just show everything
+        revealTargets.forEach((el) => el.classList.add('in'));
+      }
+
+      // ── Gold sweep — triggered on demand by adding .sweep class ──
+      // Auto-trigger on elements with class "gold-auto" when they enter viewport
+      const goldAutos = document.querySelectorAll('.gold-auto');
+      if (goldAutos.length && 'IntersectionObserver' in window) {
+        const goldIO = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('sweep');
+              goldIO.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.5 });
+        goldAutos.forEach((el) => goldIO.observe(el));
       }
     })();
   </script>
