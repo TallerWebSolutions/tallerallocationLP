@@ -100,9 +100,9 @@
       --pixel: 'VT323', monospace;
 
       /* Easings */
-      --ease: cubic-bezier(0.19, 1, 0.22, 1);             /* expo-out, padrão */
-      --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);   /* overshoot suave */
-      --ease-curtain: cubic-bezier(0.76, 0, 0.24, 1);     /* cortina */
+      --ease: cubic-bezier(0.19, 1, 0.22, 1);
+      --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+      --ease-curtain: cubic-bezier(0.76, 0, 0.24, 1);
 
       /* Structural */
       --border: 1px solid var(--graphite-30);
@@ -134,6 +134,10 @@
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       text-rendering: optimizeLegibility;
+    }
+
+    body.loading {
+      overflow: hidden;
     }
 
     img,
@@ -204,13 +208,267 @@
     .skip-link:focus {
       top: 8px;
     }
+
+    /* ══════════════════════════════════
+       SCROLL PROGRESS BAR
+       ══════════════════════════════════ */
+    #scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--heat-gradient);
+      z-index: 102;
+      transform-origin: left;
+      transform: scaleX(0);
+      pointer-events: none;
+      will-change: transform;
+    }
+
+    /* ══════════════════════════════════
+       LOADER (curtain)
+       ══════════════════════════════════ */
+    #loader {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      display: flex;
+      pointer-events: all;
+    }
+
+    #loader.done {
+      pointer-events: none;
+    }
+
+    .loader-half {
+      width: 50%;
+      height: 100%;
+      background: var(--black);
+      transition: transform 1s var(--ease-curtain);
+    }
+
+    #loader.done .loader-left {
+      transform: translateX(-100%);
+    }
+
+    #loader.done .loader-right {
+      transform: translateX(100%);
+    }
+
+    .loader-logo {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 201;
+      opacity: 1;
+      transition: opacity 0.35s ease;
+    }
+
+    .loader-logo svg {
+      height: 32px;
+      width: auto;
+      display: block;
+    }
+
+    #loader.done .loader-logo {
+      opacity: 0;
+    }
+
+    /* ══════════════════════════════════
+       CUSTOM CURSOR
+       ══════════════════════════════════ */
+    @media (hover: hover) and (pointer: fine) {
+      body:not(.loading) {
+        cursor: none;
+      }
+
+      body:not(.loading) a,
+      body:not(.loading) button {
+        cursor: none;
+      }
+    }
+
+    #cursor-dot,
+    #cursor-ring {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 9999;
+      border-radius: 50%;
+      opacity: 0;
+      will-change: transform;
+    }
+
+    body.cursor-ready #cursor-dot,
+    body.cursor-ready #cursor-ring {
+      opacity: 1;
+    }
+
+    #cursor-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--white);
+      margin: -3px 0 0 -3px;
+      transition: opacity 0.3s var(--ease);
+    }
+
+    #cursor-ring {
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--silver);
+      margin: -18px 0 0 -18px;
+      opacity: 0;
+      transition: border-color 0.3s var(--ease), opacity 0.3s var(--ease),
+        width 0.3s var(--ease), height 0.3s var(--ease), margin 0.3s var(--ease);
+    }
+
+    body.cursor-ready #cursor-ring {
+      opacity: 0.45;
+    }
+
+    #cursor-ring.hovering {
+      border-color: var(--gold);
+      width: 44px;
+      height: 44px;
+      margin: -22px 0 0 -22px;
+      opacity: 0.7;
+    }
+
+    /* Hide custom cursor on touch/coarse devices */
+    @media (hover: none), (pointer: coarse) {
+      #cursor-dot,
+      #cursor-ring {
+        display: none;
+      }
+    }
+
+    /* ══════════════════════════════════
+       REDUCED MOTION
+       ══════════════════════════════════ */
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+
+      #loader {
+        display: none;
+      }
+
+      #cursor-dot,
+      #cursor-ring {
+        display: none;
+      }
+
+      @media (hover: hover) and (pointer: fine) {
+        body:not(.loading) {
+          cursor: auto;
+        }
+      }
+    }
   </style>
 </head>
-<body>
+<body class="loading">
   <a href="#main" class="skip-link">Pular para o conteúdo</a>
+
+  <!-- Scroll progress -->
+  <div id="scroll-progress" aria-hidden="true"></div>
+
+  <!-- Loader curtain -->
+  <div id="loader" aria-hidden="true">
+    <div class="loader-half loader-left"></div>
+    <div class="loader-half loader-right"></div>
+    <div class="loader-logo">
+      <!-- Placeholder wordmark. Replace with /logo.svg once available. -->
+      <svg width="120" height="32" viewBox="0 0 120 32" xmlns="http://www.w3.org/2000/svg">
+        <text x="0" y="22" font-family="Geist Mono, monospace" font-weight="700" font-size="22" fill="#FFFFFF" letter-spacing="0.04em">taller</text>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Custom cursor (desktop only) -->
+  <div id="cursor-dot" aria-hidden="true"></div>
+  <div id="cursor-ring" aria-hidden="true"></div>
 
   <main id="main">
     <!-- LP sections will land here, one at a time, starting with the Hero. -->
   </main>
+
+  <script>
+    (() => {
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // ── Loader ──────────────────────────────
+      const loader = document.getElementById('loader');
+      const finishLoad = () => {
+        document.body.classList.remove('loading');
+        document.body.classList.add('cursor-ready');
+        loader.classList.add('done');
+      };
+
+      if (document.readyState === 'complete') {
+        requestAnimationFrame(finishLoad);
+      } else {
+        window.addEventListener('load', () => {
+          requestAnimationFrame(finishLoad);
+        });
+      }
+
+      // ── Scroll progress ─────────────────────
+      const progress = document.getElementById('scroll-progress');
+      const updateProgress = () => {
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        const ratio = max > 0 ? window.scrollY / max : 0;
+        progress.style.transform = `scaleX(${Math.min(1, Math.max(0, ratio))})`;
+      };
+      window.addEventListener('scroll', updateProgress, { passive: true });
+      window.addEventListener('resize', updateProgress, { passive: true });
+      updateProgress();
+
+      // ── Custom cursor ───────────────────────
+      const fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+      if (fine && !prefersReducedMotion) {
+        const dot = document.getElementById('cursor-dot');
+        const ring = document.getElementById('cursor-ring');
+        let mouseX = window.innerWidth / 2;
+        let mouseY = window.innerHeight / 2;
+        let ringX = mouseX;
+        let ringY = mouseY;
+
+        window.addEventListener('mousemove', (e) => {
+          mouseX = e.clientX;
+          mouseY = e.clientY;
+          dot.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
+        }, { passive: true });
+
+        const loop = () => {
+          ringX += (mouseX - ringX) * 0.18;
+          ringY += (mouseY - ringY) * 0.18;
+          ring.style.transform = `translate(${ringX}px, ${ringY}px)`;
+          requestAnimationFrame(loop);
+        };
+        loop();
+
+        // Hover state on interactive elements (delegated, future-proof)
+        document.addEventListener('mouseover', (e) => {
+          if (e.target.closest('a, button, .magnetic')) {
+            ring.classList.add('hovering');
+          }
+        });
+        document.addEventListener('mouseout', (e) => {
+          if (e.target.closest('a, button, .magnetic')) {
+            ring.classList.remove('hovering');
+          }
+        });
+      }
+    })();
+  </script>
 </body>
 </html>
