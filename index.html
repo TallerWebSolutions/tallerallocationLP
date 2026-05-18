@@ -78,7 +78,6 @@
        TOKENS
        ══════════════════════════════════ */
     :root {
-      /* Surface + ink */
       --black: #000000;
       --carbon: #1B1B1D;
       --white: #FFFFFF;
@@ -87,24 +86,20 @@
       --graphite-30: rgba(135, 135, 135, 0.3);
       --graphite-15: rgba(135, 135, 135, 0.15);
 
-      /* Heat palette (accent) */
       --heat: #E64C28;
       --flame: #DA2037;
       --solar: #F56F10;
       --gold: #F9C972;
       --heat-gradient: linear-gradient(90deg, var(--heat) 0%, var(--flame) 37%, var(--gold) 100%);
 
-      /* Type stacks */
       --font: 'Geist', 'Inter', system-ui, sans-serif;
       --mono: 'Geist Mono', 'Courier New', ui-monospace, monospace;
       --pixel: 'VT323', monospace;
 
-      /* Easings */
       --ease: cubic-bezier(0.19, 1, 0.22, 1);
       --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
       --ease-curtain: cubic-bezier(0.76, 0, 0.24, 1);
 
-      /* Structural */
       --border: 1px solid var(--graphite-30);
     }
 
@@ -190,7 +185,6 @@
       text-transform: none;
     }
 
-    /* Accessibility — skip link */
     .skip-link {
       position: absolute;
       top: -40px;
@@ -337,12 +331,203 @@
       opacity: 0.7;
     }
 
-    /* Hide custom cursor on touch/coarse devices */
     @media (hover: none), (pointer: coarse) {
       #cursor-dot,
       #cursor-ring {
         display: none;
       }
+    }
+
+    /* ══════════════════════════════════
+       BUTTONS — design system
+       ══════════════════════════════════ */
+
+    /* Base */
+    .btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: var(--mono);
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+      padding: 14px 28px;
+      border-radius: 50px;
+      border: 1.5px solid transparent;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.3s var(--ease), color 0.3s var(--ease),
+        box-shadow 0.3s var(--ease), border-color 0.3s var(--ease),
+        opacity 0.3s var(--ease);
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      .btn {
+        cursor: none;
+      }
+    }
+
+    /* Sizes */
+    .btn-mini { padding: 6px 14px; font-size: 0.72rem; }
+    .btn-sm   { padding: 10px 22px; font-size: 0.78rem; }
+    .btn-lg   { padding: 16px 36px; font-size: 0.92rem; }
+    .btn-xl   { padding: 20px 48px; font-size: 1rem; }
+
+    /* Primary — heat gradient with pulsating glow */
+    .btn-primary,
+    .btn-gold {
+      background: var(--heat-gradient);
+      color: var(--white);
+    }
+
+    .btn-primary::before,
+    .btn-gold::before {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border-radius: 53px;
+      background: var(--heat-gradient);
+      filter: blur(14px);
+      opacity: 0.3;
+      z-index: -1;
+      transition: opacity 0.3s var(--ease), filter 0.3s var(--ease);
+      animation: glow-fade 3s ease-in-out infinite;
+    }
+
+    .btn-primary:hover::before,
+    .btn-gold:hover::before {
+      opacity: 0.55;
+      filter: blur(18px);
+    }
+
+    .btn-primary:hover,
+    .btn-primary:active,
+    .btn-gold:hover,
+    .btn-gold:active {
+      background: linear-gradient(90deg, var(--flame), #b01a20);
+      color: var(--white);
+    }
+
+    .btn-primary:focus-visible,
+    .btn-gold:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(230, 76, 40, 0.55);
+    }
+
+    .btn-primary:disabled,
+    .btn-primary[aria-disabled="true"],
+    .btn-gold:disabled,
+    .btn-gold[aria-disabled="true"] {
+      background: linear-gradient(90deg, rgba(230, 76, 40, 0.35), rgba(218, 32, 55, 0.35));
+      color: rgba(255, 255, 255, 0.45);
+      pointer-events: none;
+    }
+
+    .btn-primary:disabled::before,
+    .btn-primary[aria-disabled="true"]::before,
+    .btn-gold:disabled::before,
+    .btn-gold[aria-disabled="true"]::before {
+      opacity: 0;
+    }
+
+    /* Alternate — dark fill */
+    .btn-alternate {
+      background: #111111;
+      color: var(--white);
+    }
+
+    .btn-alternate:hover,
+    .btn-alternate:active {
+      background: #2a2a2a;
+    }
+
+    .btn-alternate:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+    }
+
+    .btn-alternate:disabled,
+    .btn-alternate[aria-disabled="true"] {
+      background: #1a1a1a;
+      color: rgba(255, 255, 255, 0.3);
+      pointer-events: none;
+    }
+
+    /* Secondary / Outline — ghost */
+    .btn-secondary,
+    .btn-outline {
+      background: transparent;
+      color: var(--silver);
+      border-color: rgba(135, 135, 135, 0.45);
+    }
+
+    .btn-secondary:hover,
+    .btn-secondary:active,
+    .btn-outline:hover,
+    .btn-outline:active {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: var(--silver);
+      color: var(--white);
+    }
+
+    .btn-secondary:focus-visible,
+    .btn-outline:focus-visible {
+      outline: none;
+      border-color: var(--silver);
+      box-shadow: 0 0 0 3px rgba(135, 135, 135, 0.3);
+    }
+
+    .btn-secondary:disabled,
+    .btn-secondary[aria-disabled="true"],
+    .btn-outline:disabled,
+    .btn-outline[aria-disabled="true"] {
+      background: transparent;
+      border-color: rgba(135, 135, 135, 0.2);
+      color: rgba(135, 135, 135, 0.4);
+      pointer-events: none;
+    }
+
+    /* Alert — crimson */
+    .btn-alert {
+      background: #b71c2e;
+      color: var(--white);
+    }
+
+    .btn-alert:hover,
+    .btn-alert:active {
+      background: #8f1422;
+    }
+
+    .btn-alert:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(183, 28, 46, 0.5);
+    }
+
+    .btn-alert:disabled,
+    .btn-alert[aria-disabled="true"] {
+      background: rgba(183, 28, 46, 0.35);
+      color: rgba(255, 255, 255, 0.4);
+      pointer-events: none;
+    }
+
+    /* Bracket decoration — keyboard-tic on primary hover */
+    .bracket {
+      font-family: var(--pixel);
+      font-size: 1.1rem;
+      opacity: 0;
+      transition: opacity 0.3s var(--ease);
+    }
+
+    .btn-primary:hover .bracket,
+    .btn-gold:hover .bracket {
+      opacity: 1;
+    }
+
+    @keyframes glow-fade {
+      0%, 100% { opacity: 0.25; filter: blur(12px); }
+      50%      { opacity: 0.45; filter: blur(18px); }
     }
 
     /* ══════════════════════════════════
@@ -371,6 +556,10 @@
         body:not(.loading) {
           cursor: auto;
         }
+
+        .btn {
+          cursor: pointer;
+        }
       }
     }
   </style>
@@ -378,22 +567,18 @@
 <body class="loading">
   <a href="#main" class="skip-link">Pular para o conteúdo</a>
 
-  <!-- Scroll progress -->
   <div id="scroll-progress" aria-hidden="true"></div>
 
-  <!-- Loader curtain -->
   <div id="loader" aria-hidden="true">
     <div class="loader-half loader-left"></div>
     <div class="loader-half loader-right"></div>
     <div class="loader-logo">
-      <!-- Placeholder wordmark. Replace with /logo.svg once available. -->
       <svg width="120" height="32" viewBox="0 0 120 32" xmlns="http://www.w3.org/2000/svg">
         <text x="0" y="22" font-family="Geist Mono, monospace" font-weight="700" font-size="22" fill="#FFFFFF" letter-spacing="0.04em">taller</text>
       </svg>
     </div>
   </div>
 
-  <!-- Custom cursor (desktop only) -->
   <div id="cursor-dot" aria-hidden="true"></div>
   <div id="cursor-ring" aria-hidden="true"></div>
 
@@ -456,7 +641,6 @@
         };
         loop();
 
-        // Hover state on interactive elements (delegated, future-proof)
         document.addEventListener('mouseover', (e) => {
           if (e.target.closest('a, button, .magnetic')) {
             ring.classList.add('hovering');
