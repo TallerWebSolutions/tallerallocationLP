@@ -758,182 +758,6 @@
 
 
 
-    /* ══════════════════════════════════ BRIDGE ══════════════════════════════════ */
-    #bridge {
-      background: var(--black);
-      border-bottom: var(--border);
-    }
-
-    .bridge-inner {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 80px 60px;
-      display: grid;
-      grid-template-columns: 1.4fr 1fr;
-      gap: 60px;
-      align-items: center;
-    }
-
-    .bridge-left .label { display: inline-block; margin-bottom: 16px; }
-    .bridge-left h3 {
-      font-size: clamp(1.4rem, 2.4vw, 2rem);
-      color: var(--silver);
-      max-width: 600px;
-      transition: color 0.4s var(--ease);
-    }
-
-    .bridge-right {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      gap: 18px;
-    }
-
-    .bridge-tag {
-      font-family: var(--pixel);
-      font-size: 1.1rem;
-      color: var(--gold);
-      letter-spacing: 0.06em;
-    }
-
-    .bridge-arrow {
-      font-size: 3rem;
-      color: var(--solar);
-      line-height: 1;
-      transition: transform 0.4s var(--ease);
-    }
-
-    #bridge:hover .bridge-arrow { transform: translateX(10px); }
-    #bridge:hover .bridge-left h3 { color: var(--white); }
-
-    @media (max-width: 820px) {
-      .bridge-inner { grid-template-columns: 1fr; padding: 60px 24px; gap: 32px; }
-      .bridge-right { justify-content: flex-start; }
-      .bridge-arrow { font-size: 2.2rem; }
-    }
-
-    /* ══════════════════════════════════ RESULTADOS ══════════════════════════════════ */
-    #resultados {
-      position: relative;
-      border-bottom: var(--border);
-    }
-
-    .res-progress-line {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--flame), transparent);
-      transform: scaleX(0);
-      transform-origin: center;
-      z-index: 4;
-    }
-
-    .res-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      min-height: 100vh;
-    }
-
-    .res-success, .res-failure {
-      padding: 120px 64px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .res-success { background: var(--carbon); border-right: var(--border); }
-    .res-failure { background: var(--black); }
-
-    .res-success .label, .res-failure .label { display: inline-block; margin-bottom: 20px; }
-
-    .res-success h2, .res-failure h2 {
-      font-size: clamp(1.7rem, 2.6vw, 2.4rem);
-      margin-bottom: 40px;
-    }
-
-    .benefit-list { display: flex; flex-direction: column; gap: 22px; max-width: 480px; }
-
-    .benefit {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 16px;
-      align-items: start;
-      opacity: 0;
-      transform: translateX(-18px);
-      transition: opacity 0.7s var(--ease-reveal), transform 0.7s var(--ease-reveal);
-      transition-delay: calc(var(--i, 0) * 90ms);
-    }
-
-    #resultados.in .benefit { opacity: 1; transform: none; }
-
-    .ok-badge {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 38px;
-      height: 22px;
-      font-family: var(--pixel);
-      font-size: 0.85rem;
-      color: var(--white);
-      border: var(--border);
-      letter-spacing: 0.04em;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-
-    .benefit-text { font-size: 0.95rem; color: var(--silver); line-height: 1.65; }
-
-    .failure-list {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      max-width: 480px;
-    }
-
-    .failure-line {
-      font-family: var(--mono);
-      font-weight: 700;
-      font-size: clamp(1rem, 1.3vw, 1.15rem);
-      color: var(--silver);
-      line-height: 1.45;
-    }
-
-    .strikethrough {
-      position: relative;
-      color: var(--graphite);
-    }
-
-    .strikethrough::after {
-      content: '';
-      position: absolute;
-      left: -2px;
-      right: -2px;
-      top: 55%;
-      height: 1px;
-      background: var(--graphite);
-    }
-
-    .warn-tag {
-      display: inline-block;
-      font-family: var(--pixel);
-      font-size: 0.85rem;
-      color: rgba(210, 70, 70, 0.55);
-      letter-spacing: 0.06em;
-      margin-right: 8px;
-    }
-
-    @media (max-width: 1024px) {
-      .res-grid { grid-template-columns: 1fr; }
-      .res-success { border-right: 0; border-bottom: var(--border); }
-      .res-success, .res-failure { padding: 80px 32px; min-height: auto; }
-    }
-
-    @media (max-width: 600px) {
-      .res-success, .res-failure { padding: 60px 24px; }
-    }
-
     /* ══════════════════════════════════ SOCIAL ══════════════════════════════════ */
     #social {
       background: var(--carbon);
@@ -1641,6 +1465,118 @@
       .plano-agreement ul { grid-template-columns: 1fr; }
     }
 
+    /* ══════════════════════════════════ BRIDGE — single statement ══════════════════════════════════ */
+    #bridge {
+      background: var(--black);
+      border-bottom: var(--border);
+      padding: clamp(80px, 14vw, 160px) 60px;
+    }
+
+    .bridge-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .bridge-statement {
+      font-family: var(--mono);
+      font-weight: 700;
+      font-size: clamp(1.8rem, 3.8vw, 3.4rem);
+      line-height: 1.12;
+      color: var(--silver);
+      max-width: 900px;
+      letter-spacing: -0.02em;
+    }
+
+    @media (max-width: 820px) {
+      #bridge { padding: 80px 24px; }
+    }
+
+    /* ══════════════════════════════════ RESULTADOS — inline contrast pairs ══════════════════════════════════ */
+    #resultados {
+      background: var(--carbon);
+      border-bottom: var(--border);
+      padding: 160px 60px;
+    }
+
+    .res-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .res-head {
+      max-width: 680px;
+      margin-bottom: 88px;
+    }
+
+    .res-head .label {
+      display: inline-block;
+      margin-bottom: 18px;
+    }
+
+    .res-head h2 {
+      font-size: clamp(1.9rem, 3.2vw, 2.6rem);
+      line-height: 1.15;
+    }
+
+    .res-pairs {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .res-pair {
+      padding: 36px 0;
+      border-top: var(--border);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: clamp(40px, 6vw, 80px);
+      align-items: start;
+    }
+
+    .res-pair:last-child { border-bottom: var(--border); }
+
+    .res-side {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.7s var(--ease-reveal), transform 0.7s var(--ease-reveal);
+    }
+
+    .res-pair.in .res-side { opacity: 1; transform: none; }
+    .res-pair.in .res-side:nth-child(2) { transition-delay: 0.15s; }
+
+    .res-mark {
+      font-family: var(--pixel);
+      font-size: 1.5rem;
+      line-height: 1.1;
+      flex-shrink: 0;
+      width: 28px;
+    }
+
+    .res-mark--yes { color: var(--heat); }
+    .res-mark--no  { color: var(--graphite); }
+
+    .res-text {
+      font-family: var(--mono);
+      font-weight: 700;
+      font-size: clamp(1rem, 1.5vw, 1.2rem);
+      line-height: 1.4;
+    }
+
+    .res-side--yes .res-text { color: var(--white); }
+    .res-side--no .res-text  {
+      color: var(--graphite);
+      text-decoration: line-through;
+      text-decoration-color: var(--graphite-30);
+      text-decoration-thickness: 1px;
+    }
+
+    @media (max-width: 820px) {
+      #resultados { padding: 100px 24px; }
+      .res-pair { grid-template-columns: 1fr; row-gap: 18px; }
+    }
+
     /* ══════════════════════════════════ REDUCED MOTION ══════════════════════════════════ */
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
@@ -1743,64 +1679,6 @@
           <span class="hero-marquee__item">STRV</span>
           <span class="hero-marquee__item">Bloom</span>
           <span class="hero-marquee__item">STRV</span>
-        </div>
-      </div>
-    </section>
-
-    <section id="bridge" data-bg="black" aria-labelledby="bridge-heading">
-      <div class="bridge-inner">
-        <div class="bridge-left">
-          <span class="label" data-i18n="bridge-label">// next:</span>
-          <h3 id="bridge-heading" class="reveal" data-i18n="bridge-h3">O que muda quando a pessoa não chega sozinha.</h3>
-        </div>
-        <div class="bridge-right reveal" style="--i: 1">
-          <span class="bridge-tag" data-i18n="bridge-tag">[ o resultado ]</span>
-          <span class="bridge-arrow" aria-hidden="true">→</span>
-        </div>
-      </div>
-    </section>
-
-    <section id="resultados" data-bg="black" aria-labelledby="res-success-heading res-failure-heading">
-      <div class="res-progress-line" aria-hidden="true"></div>
-      <div class="res-grid">
-        <div class="res-success">
-          <span class="label reveal" data-i18n="res-succ-label">// OUTPUT: QUANDO_FUNCIONA</span>
-          <h2 id="res-success-heading" class="reveal" data-i18n="res-succ-h2">Quando funciona.</h2>
-
-          <div class="benefit-list">
-            <div class="benefit" style="--i: 0">
-              <span class="ok-badge" aria-hidden="true">OK</span>
-              <span class="benefit-text" data-i18n="res-succ-b1">Ramp-up em dias, não meses.</span>
-            </div>
-            <div class="benefit" style="--i: 1">
-              <span class="ok-badge" aria-hidden="true">OK</span>
-              <span class="benefit-text" data-i18n="res-succ-b2">Seu time cresce. Sua cultura não estica.</span>
-            </div>
-            <div class="benefit" style="--i: 2">
-              <span class="ok-badge" aria-hidden="true">OK</span>
-              <span class="benefit-text" data-i18n="res-succ-b3">Uma call da liderança Taller, não só do dev.</span>
-            </div>
-            <div class="benefit" style="--i: 3">
-              <span class="ok-badge" aria-hidden="true">OK</span>
-              <span class="benefit-text" data-i18n="res-succ-b4">30 dias de aviso. Substitui se precisar. Internaliza se quiser ficar.</span>
-            </div>
-            <div class="benefit" style="--i: 4">
-              <span class="ok-badge" aria-hidden="true">OK</span>
-              <span class="benefit-text" data-i18n="res-succ-b5">Coberto em férias, atestado, imprevisto. A gente resolve.</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="res-failure">
-          <span class="label reveal" data-i18n="res-fail-label">// WARN: A_VERSAO_SEM_AGENTE</span>
-          <h2 id="res-failure-heading" class="reveal" data-i18n="res-fail-h2">Quando não.</h2>
-
-          <div class="failure-list">
-            <p class="failure-line reveal" style="--i: 0" data-i18n="res-fail-l1">Contratar um sênior em <span class="strikethrough">3 semanas</span> quatro meses.</p>
-            <p class="failure-line reveal" style="--i: 1" data-i18n="res-fail-l2">Pagar caro por um dev que <span class="strikethrough">entrega</span> pede pra sair no terceiro trimestre.</p>
-            <p class="failure-line reveal" style="--i: 2" data-i18n="res-fail-l3">Achar um fornecedor que <span class="strikethrough">cumpre</span> some depois do fechamento.</p>
-            <p class="failure-line reveal" style="--i: 3" data-i18n="res-fail-l4"><span class="warn-tag">// warn</span>Gerenciar <span class="strikethrough">um colega de time</span> um estranho que você onboarda sozinho.</p>
-          </div>
         </div>
       </div>
     </section>
@@ -1977,6 +1855,79 @@
             <li data-i18n="plano-agreement-4">Substituição garantida</li>
             <li data-i18n="plano-agreement-5">100% dedicado, nunca dividido entre clientes</li>
           </ul>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="bridge" data-bg="black" aria-labelledby="bridge-heading">
+      <div class="bridge-inner">
+        <h3 id="bridge-heading" class="bridge-statement reveal" data-i18n="bridge-statement">A diferença está em <span class="heat-pulse">não chegar sozinho.</span></h3>
+      </div>
+    </section>
+
+    <section id="resultados" data-bg="carbon" aria-labelledby="res-heading">
+      <div class="res-inner">
+        <header class="res-head">
+          <span class="label reveal" data-i18n="res-label">// resultados</span>
+          <h2 id="res-heading" class="reveal" data-i18n="res-h2">O que muda com a Taller. E o que continua doendo sem.</h2>
+        </header>
+
+        <div class="res-pairs">
+          <div class="res-pair">
+            <div class="res-side res-side--yes">
+              <span class="res-mark res-mark--yes" aria-hidden="true">+</span>
+              <span class="res-text" data-i18n="res-y1">Ramp-up em dias.</span>
+            </div>
+            <div class="res-side res-side--no">
+              <span class="res-mark res-mark--no" aria-hidden="true">×</span>
+              <span class="res-text" data-i18n="res-n1">Quatro meses pra fechar um sênior.</span>
+            </div>
+          </div>
+
+          <div class="res-pair">
+            <div class="res-side res-side--yes">
+              <span class="res-mark res-mark--yes" aria-hidden="true">+</span>
+              <span class="res-text" data-i18n="res-y2">Time cresce. Cultura segue.</span>
+            </div>
+            <div class="res-side res-side--no">
+              <span class="res-mark res-mark--no" aria-hidden="true">×</span>
+              <span class="res-text" data-i18n="res-n2">Dev tecnicamente OK que sai no trimestre seguinte.</span>
+            </div>
+          </div>
+
+          <div class="res-pair">
+            <div class="res-side res-side--yes">
+              <span class="res-mark res-mark--yes" aria-hidden="true">+</span>
+              <span class="res-text" data-i18n="res-y3">Uma call da liderança Taller, não só do dev.</span>
+            </div>
+            <div class="res-side res-side--no">
+              <span class="res-mark res-mark--no" aria-hidden="true">×</span>
+              <span class="res-text" data-i18n="res-n3">Fornecedor que some depois do fechamento.</span>
+            </div>
+          </div>
+
+          <div class="res-pair">
+            <div class="res-side res-side--yes">
+              <span class="res-mark res-mark--yes" aria-hidden="true">+</span>
+              <span class="res-text" data-i18n="res-y4">30 dias de aviso. Substitui. Internaliza.</span>
+            </div>
+            <div class="res-side res-side--no">
+              <span class="res-mark res-mark--no" aria-hidden="true">×</span>
+              <span class="res-text" data-i18n="res-n4">Contrato anual que prende quando dá ruim.</span>
+            </div>
+          </div>
+
+          <div class="res-pair">
+            <div class="res-side res-side--yes">
+              <span class="res-mark res-mark--yes" aria-hidden="true">+</span>
+              <span class="res-text" data-i18n="res-y5">Coberto em férias, atestado, imprevisto.</span>
+            </div>
+            <div class="res-side res-side--no">
+              <span class="res-mark res-mark--no" aria-hidden="true">×</span>
+              <span class="res-text" data-i18n="res-n5">Freela que desaparece na semana do release.</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -2314,6 +2265,19 @@
       // ── i18n — pt/en toggle ─────────────────
       const translations = {
         pt: {
+          "bridge-statement": "A diferença está em <span class=\"heat-pulse\">não chegar sozinho.</span>",
+          "res-label": "// resultados",
+          "res-h2": "O que muda com a Taller. E o que continua doendo sem.",
+          "res-y1": "Ramp-up em dias.",
+          "res-n1": "Quatro meses pra fechar um sênior.",
+          "res-y2": "Time cresce. Cultura segue.",
+          "res-n2": "Dev tecnicamente OK que sai no trimestre seguinte.",
+          "res-y3": "Uma call da liderança Taller, não só do dev.",
+          "res-n3": "Fornecedor que some depois do fechamento.",
+          "res-y4": "30 dias de aviso. Substitui. Internaliza.",
+          "res-n4": "Contrato anual que prende quando dá ruim.",
+          "res-y5": "Coberto em férias, atestado, imprevisto.",
+          "res-n5": "Freela que desaparece na semana do release.",
           "prob-label": "// problema",
           "prob-h2": "Contratar pessoa sênior é, na maior parte, evitar errar feio.",
           "prob-1-tag": "confiança",
@@ -2363,22 +2327,6 @@
           "footer-tagline": "construindo produto desde 2012.",
           "footer-contact": "contato",
           "footer-copy": "© 2026 Taller. Feito por gente que se importa.",
-          "bridge-label": "// next:",
-          "bridge-h3": "O que muda quando a pessoa não chega sozinha.",
-          "bridge-tag": "[ o resultado ]",
-          "res-succ-label": "// OUTPUT: QUANDO_FUNCIONA",
-          "res-succ-h2": "Quando funciona.",
-          "res-succ-b1": "Ramp-up em dias, não meses.",
-          "res-succ-b2": "Seu time cresce. Sua cultura não estica.",
-          "res-succ-b3": "Uma call da liderança Taller, não só do dev.",
-          "res-succ-b4": "30 dias de aviso. Substitui se precisar. Internaliza se quiser ficar.",
-          "res-succ-b5": "Coberto em férias, atestado, imprevisto. A gente resolve.",
-          "res-fail-label": "// WARN: A_VERSAO_SEM_AGENTE",
-          "res-fail-h2": "Quando não.",
-          "res-fail-l1": "Contratar um sênior em <span class=\"strikethrough\">3 semanas</span> quatro meses.",
-          "res-fail-l2": "Pagar caro por um dev que <span class=\"strikethrough\">entrega</span> pede pra sair no terceiro trimestre.",
-          "res-fail-l3": "Achar um fornecedor que <span class=\"strikethrough\">cumpre</span> some depois do fechamento.",
-          "res-fail-l4": "<span class=\"warn-tag\">// warn</span>Gerenciar <span class=\"strikethrough\">um colega de time</span> um estranho que você onboarda sozinho.",
           'skip-link': 'Pular para o conteúdo',
           'nav-cta': 'Falar com a Taller',
           'hero-eyebrow': '// EXEC: TALLER_ALLOCATION',
@@ -2388,6 +2336,19 @@
           'hero-clients-label': 'clientes atuais'
         },
         en: {
+          "bridge-statement": "The difference is <span class=\"heat-pulse\">not arriving alone.</span>",
+          "res-label": "// outcomes",
+          "res-h2": "What changes with Taller. What keeps hurting without it.",
+          "res-y1": "Ramp-up in days.",
+          "res-n1": "Four months to close a senior hire.",
+          "res-y2": "Team grows. Culture holds.",
+          "res-n2": "A technically OK dev who leaves the next quarter.",
+          "res-y3": "One call from Taller leadership, not just the developer.",
+          "res-n3": "A vendor that disappears after signing.",
+          "res-y4": "30-day notice. Replace. Internalize.",
+          "res-n4": "An annual contract that locks you in when it sours.",
+          "res-y5": "Covered for sick days, vacation, emergencies.",
+          "res-n5": "A freelancer that disappears the week of release.",
           "prob-label": "// problem",
           "prob-h2": "Hiring senior engineers is mostly about avoiding bad calls.",
           "prob-1-tag": "trust",
@@ -2437,22 +2398,6 @@
           "footer-tagline": "building product since 2012.",
           "footer-contact": "contact",
           "footer-copy": "© 2026 Taller. Made by people who care.",
-          "bridge-label": "// next:",
-          "bridge-h3": "What changes when the engineer doesn't show up alone.",
-          "bridge-tag": "[ the outcome ]",
-          "res-succ-label": "// OUTPUT: WHEN_IT_WORKS",
-          "res-succ-h2": "When it works.",
-          "res-succ-b1": "Ramp-up in days, not months.",
-          "res-succ-b2": "Your team grows. Your culture doesn't stretch.",
-          "res-succ-b3": "One call from Taller leadership, not just from the developer.",
-          "res-succ-b4": "30-day notice. Replace if needed. Internalize if you want to keep them.",
-          "res-succ-b5": "Covered for sick days, vacation, and emergencies. We figure it out.",
-          "res-fail-label": "// WARN: THE_VERSION_WITHOUT_US",
-          "res-fail-h2": "When it doesn't.",
-          "res-fail-l1": "Hire a senior dev in <span class=\"strikethrough\">3 weeks</span> four months.",
-          "res-fail-l2": "Pay top dollar for an engineer who <span class=\"strikethrough\">ships</span> leaves by Q3.",
-          "res-fail-l3": "Find a vendor that <span class=\"strikethrough\">delivers</span> disappears after signing.",
-          "res-fail-l4": "<span class=\"warn-tag\">// warn</span>Manage <span class=\"strikethrough\">a teammate</span> a stranger you have to onboard alone.",
           'skip-link': 'Skip to content',
           'nav-cta': 'Talk to us',
           'hero-eyebrow': '// EXEC: TALLER_ALLOCATION',
@@ -2509,37 +2454,6 @@
       });
 
 
-      // ── Resultados — scroll-scrubbed progress line on top edge ──
-      const resSection = document.getElementById('resultados');
-      const resLine = resSection ? resSection.querySelector('.res-progress-line') : null;
-      if (resSection && resLine) {
-        const onScroll = () => {
-          const rect = resSection.getBoundingClientRect();
-          const viewport = window.innerHeight;
-          const total = rect.height + viewport;
-          const passed = Math.max(0, Math.min(total, viewport - rect.top));
-          const ratio = total > 0 ? passed / total : 0;
-          resLine.style.transform = `scaleX(${Math.min(1, Math.max(0, ratio * 1.4))})`;
-        };
-        window.addEventListener('scroll', onScroll, { passive: true });
-        window.addEventListener('resize', onScroll, { passive: true });
-        onScroll();
-
-        if ('IntersectionObserver' in window) {
-          const benefitIO = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                resSection.classList.add('in');
-                benefitIO.unobserve(entry.target);
-              }
-            });
-          }, { threshold: 0.2 });
-          benefitIO.observe(resSection);
-        }
-      }
-
-
-
       // ── Section-specific .in trigger for prob-item, timeline-step, guia-essay ──
       if ('IntersectionObserver' in window) {
         const inIO = new IntersectionObserver((entries) => {
@@ -2551,7 +2465,7 @@
           });
         }, { threshold: 0.4, rootMargin: '0px 0px -10% 0px' });
 
-        document.querySelectorAll('.prob-item, .timeline-step, .guia-essay')
+        document.querySelectorAll('.prob-item, .timeline-step, .guia-essay, .res-pair')
           .forEach((el) => inIO.observe(el));
       }
 
