@@ -549,6 +549,91 @@
       .nav-menu { display: none; }
     }
 
+
+    /* ══════════════════════════════════ HERO ══════════════════════════════════ */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: var(--black);
+      overflow: hidden;
+      border-bottom: var(--border);
+      padding-bottom: 120px;
+    }
+
+    /* Subtle CRT scanlines overlay */
+    #hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      background: repeating-linear-gradient(0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 0, 0, 0.06) 2px,
+        rgba(0, 0, 0, 0.06) 4px);
+      opacity: 0.45;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      padding: 160px 60px 80px;
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .hero-pre {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .cursor-blink {
+      font-family: var(--pixel);
+      font-size: 1.3rem;
+      color: var(--graphite);
+      animation: blink 1s step-end infinite;
+      line-height: 1;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%      { opacity: 0; }
+    }
+
+    .hero-h1 {
+      font-size: clamp(2.4rem, 5.5vw, 4.5rem);
+      color: var(--white);
+      max-width: 920px;
+      margin-bottom: 28px;
+      line-height: 1.05;
+    }
+
+    .hero-sub {
+      font-size: clamp(0.98rem, 1.2vw, 1.12rem);
+      color: var(--silver);
+      max-width: 620px;
+      margin-bottom: 48px;
+      line-height: 1.75;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 820px) {
+      .hero-content { padding: 130px 24px 60px; }
+    }
+
     /* ══════════════════════════════════ REDUCED MOTION ══════════════════════════════════ */
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
@@ -608,7 +693,30 @@
   </nav>
 
   <main id="main">
-    <!-- LP sections will land here, one at a time, starting with the Hero. -->
+<section id="hero" data-bg="black" aria-labelledby="hero-heading">
+      <div class="hero-content">
+        <div class="hero-pre reveal" style="--i: 0">
+          <span class="cursor-blink" aria-hidden="true">[ _ ]</span>
+          <span class="label">// EXEC: TALLER_ALLOCATION</span>
+        </div>
+
+        <h1 id="hero-heading" class="hero-h1 reveal" style="--i: 1">
+          Uma pessoa sênior no seu time em <span class="heat-pulse">duas semanas</span>.
+        </h1>
+
+        <p class="hero-sub reveal" style="--i: 2">
+          Engenheiros Sênior trabalham dentro do seu time. Filtro interno, suporte contínuo, contrato com 30 dias de aviso.
+        </p>
+
+        <div class="hero-cta-row reveal" style="--i: 3">
+          <a class="btn btn-primary btn-lg magnetic" href="#cta-final">
+            <span class="bracket" aria-hidden="true">[</span>
+            Falar com a Taller
+            <span class="bracket" aria-hidden="true">]</span>
+          </a>
+        </div>
+      </div>
+    </section>
   </main>
 
   <script>
