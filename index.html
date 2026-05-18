@@ -758,344 +758,6 @@
 
 
 
-    /* ══════════════════════════════════ PROBLEMA ══════════════════════════════════ */
-    #problema {
-      position: relative;
-      background: var(--carbon);
-      border-bottom: var(--border);
-      isolation: isolate;
-    }
-
-    .problema-inner {
-      display: flex;
-      align-items: flex-start;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-
-    .prob-left {
-      position: sticky;
-      top: 0;
-      width: 48%;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 80px 64px;
-      border-right: var(--border);
-    }
-
-    .prob-left .label { margin-bottom: 20px; display: inline-block; }
-
-    .prob-left h2 {
-      font-size: clamp(1.7rem, 2.8vw, 2.6rem);
-      margin-bottom: 20px;
-    }
-
-    .prob-left p { font-size: 0.95rem; line-height: 1.75; max-width: 480px; }
-
-    .prob-right {
-      width: 52%;
-      padding: 100px 64px;
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-    }
-
-    .err-card {
-      position: relative;
-      border: var(--border);
-      border-radius: 2px;
-      padding: 32px;
-      background: rgba(0, 0, 0, 0.25);
-      transition: background 0.4s var(--ease), border-color 0.4s var(--ease);
-      overflow: hidden;
-    }
-
-    .err-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(230, 76, 40, 0.8), var(--flame), transparent);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.55s var(--ease);
-    }
-
-    .err-card:hover { background: rgba(230, 76, 40, 0.04); border-color: rgba(230, 76, 40, 0.32); }
-    .err-card:hover::before { transform: scaleX(1); }
-
-    .err-badge {
-      display: inline-block;
-      font-family: var(--pixel);
-      font-size: 0.9rem;
-      color: rgba(210, 70, 70, 0.65);
-      border: 1px solid rgba(210, 70, 70, 0.3);
-      padding: 2px 10px;
-      margin-bottom: 14px;
-      transition: color 0.3s var(--ease), border-color 0.3s var(--ease);
-    }
-
-    .err-card:hover .err-badge { color: rgba(230, 76, 40, 0.85); border-color: rgba(230, 76, 40, 0.45); }
-
-    .err-card h3 { font-family: var(--mono); font-size: 1.05rem; color: var(--white); margin-bottom: 8px; }
-    .err-card p  { font-size: 0.95rem; color: var(--graphite); line-height: 1.65; }
-
-    @media (max-width: 1024px) {
-      .problema-inner { flex-direction: column; }
-      .prob-left, .prob-right { width: 100%; }
-      .prob-left { position: static; height: auto; padding: 80px 32px 32px; border-right: 0; }
-      .prob-right { padding: 32px 32px 80px; }
-    }
-
-    @media (max-width: 600px) {
-      .prob-left { padding: 60px 24px 24px; }
-      .prob-right { padding: 24px 24px 60px; gap: 16px; }
-      .err-card { padding: 24px; }
-    }
-
-    /* ══════════════════════════════════ GUIA ══════════════════════════════════ */
-    #guia {
-      background: var(--black);
-      border-bottom: var(--border);
-    }
-
-    .guia-inner {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 140px 60px;
-    }
-
-    .guia-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: start;
-    }
-
-    .guia-text .label { display: inline-block; margin-bottom: 20px; }
-    .guia-text h2 { font-size: clamp(1.9rem, 3.5vw, 3rem); margin-bottom: 28px; max-width: 540px; }
-    .guia-text p { margin-bottom: 18px; line-height: 1.8; max-width: 540px; }
-
-    .guia-legacy {
-      margin-top: 48px;
-      padding-top: 32px;
-      border-top: var(--border);
-    }
-
-    .guia-legacy .label { display: block; margin-bottom: 18px; }
-
-    .guia-legacy-strip {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 32px 48px;
-      font-family: var(--mono);
-      font-weight: 700;
-      font-size: 0.95rem;
-      letter-spacing: 0.16em;
-      color: var(--graphite);
-      text-transform: uppercase;
-    }
-
-    .guia-legacy-strip span { transition: color 0.3s var(--ease); }
-    .guia-legacy-strip span:hover { color: var(--silver); }
-
-    .guia-visual {
-      position: relative;
-      background: linear-gradient(160deg, #16121c 0%, #08060c 100%);
-      border: 1px solid rgba(249, 201, 114, 0.15);
-      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03), 0 30px 60px -20px rgba(0, 0, 0, 0.6);
-      padding: 4px;
-      aspect-ratio: 1 / 1.05;
-      overflow: hidden;
-    }
-
-    .guia-visual::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at 20% 15%, rgba(230, 76, 40, 0.18), transparent 45%),
-        radial-gradient(circle at 80% 85%, rgba(249, 201, 114, 0.12), transparent 50%);
-      pointer-events: none;
-    }
-
-    .guia-visual::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: radial-gradient(circle, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
-      background-size: 8px 8px;
-      -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
-              mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .phase-grid {
-      position: relative;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-    }
-
-    .phase-card {
-      position: relative;
-      padding: 36px 28px;
-      border-right: 1px solid rgba(255, 255, 255, 0.06);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-      transition: background 0.4s var(--ease);
-      overflow: hidden;
-    }
-
-    .phase-card:nth-child(2n) { border-right: 0; }
-    .phase-card:nth-child(n+3) { border-bottom: 0; }
-
-    .phase-card:hover { background: rgba(230, 76, 40, 0.05); }
-
-    .phase-num {
-      font-family: var(--pixel);
-      font-size: 1.4rem;
-      color: var(--heat);
-      letter-spacing: 0.06em;
-      margin-bottom: 18px;
-      transition: color 0.3s var(--ease);
-    }
-
-    .phase-card:hover .phase-num { color: var(--gold); }
-
-    .phase-name {
-      font-family: var(--mono);
-      font-weight: 700;
-      font-size: 0.78rem;
-      letter-spacing: 0.14em;
-      color: var(--silver);
-      text-transform: uppercase;
-      margin-bottom: 12px;
-      transition: color 0.3s var(--ease);
-    }
-
-    .phase-card:hover .phase-name { color: var(--white); }
-
-    .phase-body { font-size: 0.86rem; color: var(--graphite); line-height: 1.6; }
-
-    @media (max-width: 1024px) {
-      .guia-grid { grid-template-columns: 1fr; gap: 60px; }
-      .guia-visual { aspect-ratio: 1 / 0.85; max-width: 560px; }
-    }
-
-    @media (max-width: 600px) {
-      .guia-inner { padding: 100px 24px; }
-      .guia-grid { gap: 48px; }
-      .phase-card { padding: 28px 20px; }
-    }
-
-    /* ══════════════════════════════════ PLANO ══════════════════════════════════ */
-    #plano {
-      background: var(--carbon);
-      border-bottom: var(--border);
-    }
-
-    .plano-inner {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 140px 60px;
-    }
-
-    .plano-head { max-width: 720px; margin-bottom: 64px; }
-    .plano-head .label { display: inline-block; margin-bottom: 20px; }
-    .plano-head h2 { font-size: clamp(1.8rem, 3.2vw, 2.8rem); margin-bottom: 0; }
-
-    .bento {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1px;
-      background: var(--graphite-30);
-      border: var(--border);
-    }
-
-    .bento-card {
-      --cx: 50%;
-      --cy: 50%;
-      position: relative;
-      padding: 52px 44px 56px;
-      background: var(--carbon);
-      overflow: hidden;
-      transition: background 0.4s var(--ease);
-    }
-
-    .bento-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(120px circle at var(--cx) var(--cy), rgba(230, 76, 40, 0.10), transparent 70%);
-      opacity: 0;
-      transition: opacity 0.3s var(--ease);
-      pointer-events: none;
-    }
-
-    .bento-card:hover::before { opacity: 1; }
-
-    .bento-num {
-      position: absolute;
-      bottom: -18px;
-      right: 14px;
-      font-family: var(--pixel);
-      font-size: 7.5rem;
-      color: #2a2a2d;
-      line-height: 1;
-      pointer-events: none;
-      user-select: none;
-    }
-
-    .bento-card h3 {
-      font-family: var(--mono);
-      font-size: 1.15rem;
-      color: var(--white);
-      margin-bottom: 14px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .bento-card p {
-      font-size: 0.95rem;
-      color: var(--silver);
-      line-height: 1.7;
-      max-width: 460px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .bento-card.full {
-      grid-column: 1 / -1;
-      padding: 48px 44px;
-      border-top: 1px solid var(--graphite-30);
-    }
-
-    .bento-card.full .bento-num {
-      font-size: 8rem;
-      bottom: -22px;
-      right: 22px;
-    }
-
-    .bento-card.full p {
-      max-width: 720px;
-      font-size: 1rem;
-    }
-
-    @media (max-width: 820px) {
-      .plano-inner { padding: 100px 24px; }
-      .bento { grid-template-columns: 1fr; }
-      .bento-card { padding: 40px 28px 44px; }
-      .bento-num { font-size: 6rem; }
-      .bento-card.full .bento-num { font-size: 6rem; }
-    }
-
     /* ══════════════════════════════════ BRIDGE ══════════════════════════════════ */
     #bridge {
       background: var(--black);
@@ -1661,6 +1323,324 @@
       .footer-inner { flex-direction: column; align-items: flex-start; padding: 48px 24px 32px; }
     }
 
+    /* ══════════════════════════════════ PROBLEMA — vertical numbered sequence ══════════════════════════════════ */
+    #problema {
+      background: var(--carbon);
+      border-bottom: var(--border);
+      padding: 140px 60px 80px;
+    }
+
+    .prob-head { max-width: 1100px; margin: 0 auto 80px; }
+    .prob-head .label { display: inline-block; margin-bottom: 18px; }
+    .prob-head h2 {
+      font-size: clamp(1.8rem, 2.8vw, 2.6rem);
+      max-width: 640px;
+      color: var(--silver);
+    }
+
+    .prob-item {
+      position: relative;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 100px 0;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      column-gap: clamp(40px, 6vw, 80px);
+      align-items: start;
+      border-top: var(--border);
+    }
+
+    .prob-item--right { grid-template-columns: 1fr auto; }
+    .prob-item--right .prob-num  { grid-column: 2; }
+    .prob-item--right .prob-body { grid-column: 1; text-align: right; }
+    .prob-item--right .prob-body h3 { margin-left: auto; }
+
+    .prob-num {
+      font-family: var(--pixel);
+      font-size: clamp(7rem, 16vw, 13rem);
+      line-height: 0.85;
+      color: var(--graphite-30);
+      letter-spacing: -0.02em;
+      transition: color 1s var(--ease), text-shadow 1s var(--ease);
+    }
+
+    .prob-item.in .prob-num {
+      color: var(--heat);
+      text-shadow: 0 0 30px rgba(230, 76, 40, 0.25);
+    }
+
+    .prob-tag {
+      display: inline-block;
+      font-family: var(--pixel);
+      font-size: 1.05rem;
+      color: var(--graphite);
+      text-transform: lowercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 18px;
+      padding: 2px 10px;
+      border: 1px solid var(--graphite-30);
+      transition: color 0.6s var(--ease), border-color 0.6s var(--ease);
+    }
+
+    .prob-item.in .prob-tag {
+      color: var(--heat);
+      border-color: rgba(230, 76, 40, 0.4);
+    }
+
+    .prob-body h3 {
+      font-family: var(--mono);
+      font-weight: 700;
+      font-size: clamp(1.4rem, 2.8vw, 2.4rem);
+      color: var(--silver);
+      line-height: 1.18;
+      max-width: 640px;
+    }
+
+    @media (max-width: 820px) {
+      #problema { padding: 100px 24px 40px; }
+      .prob-item { padding: 60px 0; grid-template-columns: 1fr; row-gap: 24px; }
+      .prob-item--right { grid-template-columns: 1fr; }
+      .prob-item--right .prob-num,
+      .prob-item--right .prob-body { grid-column: 1; text-align: left; }
+      .prob-item--right .prob-body h3 { margin-left: 0; }
+    }
+
+    /* ══════════════════════════════════ GUIA — manifesto column ══════════════════════════════════ */
+    #guia {
+      background: var(--black);
+      border-bottom: var(--border);
+      padding: 160px 60px;
+    }
+
+    .guia-inner {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .guia-inner > .label {
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+
+    .guia-inner h2 {
+      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      margin-bottom: 56px;
+      line-height: 1.05;
+    }
+
+    .guia-essay p {
+      font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+      line-height: 1.75;
+      color: var(--silver);
+      margin-bottom: 32px;
+    }
+
+    .guia-essay em {
+      color: var(--white);
+      font-style: normal;
+      position: relative;
+      display: inline-block;
+    }
+
+    .guia-essay em::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -2px;
+      height: 1px;
+      background: var(--heat-gradient);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 1s var(--ease) 0.4s;
+    }
+
+    .guia-essay.in em::after { transform: scaleX(1); }
+
+    .guia-essay strong {
+      color: var(--white);
+      font-weight: 700;
+    }
+
+    .guia-legacy {
+      margin-top: 80px;
+      padding-top: 48px;
+      border-top: var(--border);
+    }
+
+    .guia-legacy .label {
+      display: block;
+      margin-bottom: 24px;
+    }
+
+    .guia-legacy-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 28px 40px;
+      font-family: var(--mono);
+      font-weight: 700;
+      font-size: 1.05rem;
+      letter-spacing: 0.16em;
+      color: var(--graphite);
+      text-transform: uppercase;
+    }
+
+    .guia-legacy-strip span {
+      transition: color 0.3s var(--ease);
+    }
+
+    .guia-legacy-strip span:hover { color: var(--silver); }
+
+    @media (max-width: 820px) {
+      #guia { padding: 100px 24px; }
+    }
+
+    /* ══════════════════════════════════ PLANO — vertical timeline ══════════════════════════════════ */
+    #plano {
+      background: var(--carbon);
+      border-bottom: var(--border);
+      padding: 160px 60px;
+    }
+
+    .plano-inner {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .plano-head { margin-bottom: 88px; max-width: 640px; }
+    .plano-head .label { display: inline-block; margin-bottom: 18px; }
+    .plano-head h2 {
+      font-size: clamp(2rem, 3.4vw, 2.8rem);
+      line-height: 1.1;
+    }
+
+    .timeline {
+      position: relative;
+      list-style: none;
+      padding-left: 0;
+      margin-bottom: 120px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 27px;
+      top: 56px;
+      bottom: 56px;
+      width: 1px;
+      background: linear-gradient(180deg, var(--graphite-30), var(--graphite-30) 50%, transparent);
+    }
+
+    .timeline-step {
+      position: relative;
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      column-gap: 40px;
+      padding: 24px 0 64px;
+    }
+
+    .timeline-step:last-child { padding-bottom: 0; }
+
+    .timeline-node {
+      position: relative;
+      width: 56px;
+      height: 56px;
+      border: 1px solid var(--graphite-30);
+      background: var(--carbon);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: border-color 0.8s var(--ease), background 0.8s var(--ease);
+    }
+
+    .timeline-step.in .timeline-node {
+      border-color: var(--heat);
+      background: rgba(230, 76, 40, 0.08);
+    }
+
+    .timeline-node::before {
+      content: '';
+      position: absolute;
+      inset: -10px;
+      border-radius: 50%;
+      background: var(--heat);
+      filter: blur(14px);
+      opacity: 0;
+      transition: opacity 1s var(--ease);
+      z-index: 0;
+    }
+
+    .timeline-step.in .timeline-node::before { opacity: 0.25; }
+
+    .timeline-num {
+      position: relative;
+      z-index: 1;
+      font-family: var(--pixel);
+      font-size: 1.3rem;
+      color: var(--graphite);
+      transition: color 0.8s var(--ease);
+    }
+
+    .timeline-step.in .timeline-num { color: var(--heat); }
+
+    .timeline-content h3 {
+      font-family: var(--mono);
+      font-size: clamp(1.25rem, 1.9vw, 1.7rem);
+      color: var(--white);
+      margin-bottom: 14px;
+      margin-top: 4px;
+    }
+
+    .timeline-content p {
+      font-size: 1.02rem;
+      line-height: 1.7;
+      max-width: 560px;
+    }
+
+    .plano-agreement {
+      padding-top: 56px;
+      border-top: var(--border);
+    }
+
+    .plano-agreement .label {
+      display: block;
+      margin-bottom: 28px;
+    }
+
+    .plano-agreement ul {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: 48px;
+      row-gap: 16px;
+    }
+
+    .plano-agreement li {
+      font-family: var(--mono);
+      font-size: 0.95rem;
+      color: var(--silver);
+      padding-left: 26px;
+      position: relative;
+      line-height: 1.5;
+    }
+
+    .plano-agreement li::before {
+      content: '+';
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--heat);
+      font-family: var(--pixel);
+      font-size: 1.2rem;
+      line-height: 1;
+    }
+
+    @media (max-width: 820px) {
+      #plano { padding: 100px 24px; }
+      .plano-agreement ul { grid-template-columns: 1fr; }
+    }
+
     /* ══════════════════════════════════ REDUCED MOTION ══════════════════════════════════ */
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
@@ -1763,118 +1743,6 @@
           <span class="hero-marquee__item">STRV</span>
           <span class="hero-marquee__item">Bloom</span>
           <span class="hero-marquee__item">STRV</span>
-        </div>
-      </div>
-    </section>
-
-    <section id="problema" data-bg="carbon" aria-labelledby="prob-heading">
-      <div class="problema-inner">
-        <div class="prob-left">
-          <span class="label reveal" data-i18n="prob-label">// ERR_LOG: HIRING</span>
-          <h2 id="prob-heading" class="reveal" data-i18n="prob-h2">Contratar pessoa sênior é, na maior parte, evitar errar feio.</h2>
-          <p class="reveal" data-i18n="prob-sub">Você precisa de gente sênior, agora. Cada caminho tem o jeito específico de dar ruim. Esses são os que aparecem.</p>
-        </div>
-        <div class="prob-right">
-          <article class="err-card reveal">
-            <span class="err-badge" data-i18n="prob-c1-badge">[ ERR: TRUST ]</span>
-            <h3 data-i18n="prob-c1-title">Confiança no fornecedor</h3>
-            <p data-i18n="prob-c1-body">Primeira vez com esse fornecedor. O portfólio é bom. A primeira call confirma. Depois disso, é aposta.</p>
-          </article>
-          <article class="err-card reveal" style="--i: 1">
-            <span class="err-badge" data-i18n="prob-c2-badge">[ ERR: SPEED ]</span>
-            <h3 data-i18n="prob-c2-title">Velocidade</h3>
-            <p data-i18n="prob-c2-body">Vaga sênior aberta. Agenda cheia de entrevista. Cada semana é um sprint escorrendo.</p>
-          </article>
-          <article class="err-card reveal" style="--i: 2">
-            <span class="err-badge" data-i18n="prob-c3-badge">[ ERR: SENIORITY ]</span>
-            <h3 data-i18n="prob-c3-title">Senioridade real</h3>
-            <p data-i18n="prob-c3-body">Sênior no LinkedIn. Pleno na sprint. Você descobre na terceira semana.</p>
-          </article>
-          <article class="err-card reveal" style="--i: 3">
-            <span class="err-badge" data-i18n="prob-c4-badge">[ ERR: NO_BACKUP ]</span>
-            <h3 data-i18n="prob-c4-title">Cobertura</h3>
-            <p data-i18n="prob-c4-body">Pessoa não pode trabalhar hoje. Férias, médico, qualquer coisa. Quem cobre? Pra quem você liga?</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="guia" data-bg="black" aria-labelledby="guia-heading">
-      <div class="guia-inner">
-        <div class="guia-grid">
-          <div class="guia-text">
-            <span class="label reveal" data-i18n="guia-label">// EXEC: WHO_WE_ARE</span>
-            <h2 id="guia-heading" class="reveal" data-i18n="guia-h2">A Taller faz produto desde 2012.</h2>
-            <p class="reveal" data-i18n="guia-p1">Nesse tempo, construímos referências fortes pra dentro: como selecionamos pessoas, como trabalhamos, como damos e recebemos feedback. Nada disso para quando uma pessoa que selecionamos vai trabalhar no seu time.</p>
-            <p class="reveal" style="--i: 1" data-i18n="guia-p2">Nosso filtro interno olha fit cultural antes da técnica. A gente não coloca ninguém na frente de um cliente que não consegue tomar iniciativa, que não consegue discordar, ou que não opera bem em remoto. Essa parte do trabalho acontece antes da alocação, não durante.</p>
-
-            <div class="guia-legacy reveal" style="--i: 2">
-              <span class="label" data-i18n="guia-legacy-label">// empresas que já confiaram na taller</span>
-              <div class="guia-legacy-strip" aria-label="Clientes legados">
-                <span>Ebanx</span>
-                <span>RDStation</span>
-                <span>Coca-Cola</span>
-                <span>Natura</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="guia-visual reveal" style="--i: 1">
-            <div class="phase-grid">
-              <article class="phase-card">
-                <div class="phase-num">01</div>
-                <div class="phase-name" data-i18n="guia-phase1-name">Seleção</div>
-                <p class="phase-body" data-i18n="guia-phase1-body">Antes de qualquer alocação, a pessoa passa pelo nosso filtro interno. Cultural antes da técnica.</p>
-              </article>
-              <article class="phase-card">
-                <div class="phase-num">02</div>
-                <div class="phase-name" data-i18n="guia-phase2-name">Match</div>
-                <p class="phase-body" data-i18n="guia-phase2-body">Pareamento feito por gente que conhece tanto os perfis quanto o seu contexto.</p>
-              </article>
-              <article class="phase-card">
-                <div class="phase-num">03</div>
-                <div class="phase-name" data-i18n="guia-phase3-name">Integração</div>
-                <p class="phase-body" data-i18n="guia-phase3-body">A pessoa trabalha dentro do seu time. O nosso fica acessível.</p>
-              </article>
-              <article class="phase-card">
-                <div class="phase-num">04</div>
-                <div class="phase-name" data-i18n="guia-phase4-name">Suporte</div>
-                <p class="phase-body" data-i18n="guia-phase4-body">Canal aberto durante o contrato todo.</p>
-              </article>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="plano" data-bg="carbon" aria-labelledby="plano-heading">
-      <div class="plano-inner">
-        <div class="plano-head">
-          <span class="label reveal" data-i18n="plano-label">// EXEC: HOW_IT_WORKS</span>
-          <h2 id="plano-heading" class="reveal" data-i18n="plano-h2">Três passos. Encerra com 30 dias de aviso.</h2>
-        </div>
-
-        <div class="bento">
-          <article class="bento-card reveal" data-track-cursor>
-            <span class="bento-num" aria-hidden="true">01</span>
-            <h3 data-i18n="plano-c1-title">Conta o que precisa</h3>
-            <p data-i18n="plano-c1-body">Stack, senioridade, contexto. 30 minutos. A gente sabe se tem match antes da call acabar.</p>
-          </article>
-          <article class="bento-card reveal" style="--i: 1" data-track-cursor>
-            <span class="bento-num" aria-hidden="true">02</span>
-            <h3 data-i18n="plano-c2-title">Apresentamos um perfil</h3>
-            <p data-i18n="plano-c2-body">Match feito por gente que conhece o bench e o seu contexto. Aprovado no nosso filtro interno. Pronto pra começar em 10–15 dias úteis.</p>
-          </article>
-          <article class="bento-card reveal" style="--i: 2" data-track-cursor>
-            <span class="bento-num" aria-hidden="true">03</span>
-            <h3 data-i18n="plano-c3-title">Começa a entregar</h3>
-            <p data-i18n="plano-c3-body">Integrado ao seu time. Calibragem com você. Segue sendo Taller, com suporte e retaguarda. Substituição se não rolar.</p>
-          </article>
-          <article class="bento-card full reveal" style="--i: 3" data-track-cursor>
-            <span class="bento-num" aria-hidden="true">04</span>
-            <h3 data-i18n="plano-c4-title">O acordo</h3>
-            <p data-i18n="plano-c4-body">Sem taxa de adesão. Sem fidelidade anual. 30 dias de aviso pra encerrar. Substituição garantida. 100% dedicado, nunca dividido entre clientes.</p>
-          </article>
         </div>
       </div>
     </section>
@@ -2002,6 +1870,113 @@
           <span class="agenda-placeholder-icon" aria-hidden="true">[ ]</span>
           <div class="agenda-placeholder-title" data-i18n="agenda-placeholder-title">Calendly virá aqui</div>
           <p class="agenda-placeholder-note" data-i18n="agenda-placeholder-note">Embed pendente — owner do agendamento ainda a confirmar (Rafa · Jordano · round-robin).</p>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="problema" data-bg="carbon" aria-labelledby="prob-heading">
+      <header class="prob-head">
+        <span class="label reveal" data-i18n="prob-label">// problema</span>
+        <h2 id="prob-heading" class="reveal" data-i18n="prob-h2">Contratar pessoa sênior é, na maior parte, evitar errar feio.</h2>
+      </header>
+
+      <div class="prob-item prob-item--left">
+        <span class="prob-num" aria-hidden="true">01</span>
+        <div class="prob-body">
+          <span class="prob-tag" data-i18n="prob-1-tag">confiança</span>
+          <h3 data-i18n="prob-1-body">O portfólio é bom. A primeira call confirma. Depois disso, é aposta.</h3>
+        </div>
+      </div>
+
+      <div class="prob-item prob-item--right">
+        <span class="prob-num" aria-hidden="true">02</span>
+        <div class="prob-body">
+          <span class="prob-tag" data-i18n="prob-2-tag">velocidade</span>
+          <h3 data-i18n="prob-2-body">Vaga aberta, agenda cheia de entrevista. Cada semana é um sprint escorrendo.</h3>
+        </div>
+      </div>
+
+      <div class="prob-item prob-item--left">
+        <span class="prob-num" aria-hidden="true">03</span>
+        <div class="prob-body">
+          <span class="prob-tag" data-i18n="prob-3-tag">senioridade real</span>
+          <h3 data-i18n="prob-3-body">Sênior no LinkedIn. Pleno na sprint. Você descobre na terceira semana.</h3>
+        </div>
+      </div>
+
+      <div class="prob-item prob-item--right">
+        <span class="prob-num" aria-hidden="true">04</span>
+        <div class="prob-body">
+          <span class="prob-tag" data-i18n="prob-4-tag">cobertura</span>
+          <h3 data-i18n="prob-4-body">Pessoa não pode trabalhar hoje. Quem cobre? Pra quem você liga?</h3>
+        </div>
+      </div>
+    </section>
+
+    <section id="guia" data-bg="black" aria-labelledby="guia-heading">
+      <div class="guia-inner">
+        <span class="label" data-i18n="guia-label">// quem somos</span>
+        <h2 id="guia-heading" class="reveal" data-i18n="guia-h2">A Taller faz produto desde 2012.</h2>
+
+        <div class="guia-essay">
+          <p class="reveal" style="--i: 0" data-i18n="guia-p1">Nesse tempo construímos referências fortes pra dentro: como selecionamos pessoas, como trabalhamos, como damos e recebemos feedback. <em>Nada disso para</em> quando uma pessoa que selecionamos vai trabalhar no seu time.</p>
+          <p class="reveal" style="--i: 1" data-i18n="guia-p2">Nosso filtro interno olha fit cultural antes da técnica. A gente não coloca ninguém na frente de um cliente que não consegue tomar iniciativa, que não consegue discordar, ou que não opera bem em remoto.</p>
+          <p class="reveal" style="--i: 2" data-i18n="guia-p3">Essa parte do trabalho acontece <strong>antes</strong> da alocação. Não durante.</p>
+        </div>
+
+        <div class="guia-legacy reveal" style="--i: 3">
+          <span class="label" data-i18n="guia-legacy-label">// quem já confiou</span>
+          <div class="guia-legacy-strip" aria-label="Empresas que já confiaram na Taller">
+            <span>Ebanx</span>
+            <span>RDStation</span>
+            <span>Coca-Cola</span>
+            <span>Natura</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="plano" data-bg="carbon" aria-labelledby="plano-heading">
+      <div class="plano-inner">
+        <header class="plano-head">
+          <span class="label reveal" data-i18n="plano-label">// como funciona</span>
+          <h2 id="plano-heading" class="reveal" data-i18n="plano-h2">Três passos. Cancela com 30 dias de aviso.</h2>
+        </header>
+
+        <ol class="timeline" aria-label="Como funciona">
+          <li class="timeline-step">
+            <div class="timeline-node" aria-hidden="true"><span class="timeline-num">01</span></div>
+            <div class="timeline-content">
+              <h3 data-i18n="plano-s1-title">Conta o que precisa</h3>
+              <p data-i18n="plano-s1-body">Stack, senioridade, contexto. 30 minutos. A gente sabe se tem match antes da call acabar.</p>
+            </div>
+          </li>
+          <li class="timeline-step">
+            <div class="timeline-node" aria-hidden="true"><span class="timeline-num">02</span></div>
+            <div class="timeline-content">
+              <h3 data-i18n="plano-s2-title">Apresentamos um perfil</h3>
+              <p data-i18n="plano-s2-body">Match feito por gente que conhece o bench e o seu contexto. Aprovado no filtro interno. Pronto em 10–15 dias úteis.</p>
+            </div>
+          </li>
+          <li class="timeline-step">
+            <div class="timeline-node" aria-hidden="true"><span class="timeline-num">03</span></div>
+            <div class="timeline-content">
+              <h3 data-i18n="plano-s3-title">Começa a entregar</h3>
+              <p data-i18n="plano-s3-body">Integrado ao seu time. Calibragem com você. Segue sendo Taller, com suporte e retaguarda. Substituição se não rolar.</p>
+            </div>
+          </li>
+        </ol>
+
+        <div class="plano-agreement reveal">
+          <span class="label" data-i18n="plano-agreement-label">// o acordo</span>
+          <ul>
+            <li data-i18n="plano-agreement-1">Sem taxa de adesão</li>
+            <li data-i18n="plano-agreement-2">Sem fidelidade anual</li>
+            <li data-i18n="plano-agreement-3">30 dias de aviso pra encerrar</li>
+            <li data-i18n="plano-agreement-4">Substituição garantida</li>
+            <li data-i18n="plano-agreement-5">100% dedicado, nunca dividido entre clientes</li>
+          </ul>
         </div>
       </div>
     </section>
@@ -2339,6 +2314,36 @@
       // ── i18n — pt/en toggle ─────────────────
       const translations = {
         pt: {
+          "prob-label": "// problema",
+          "prob-h2": "Contratar pessoa sênior é, na maior parte, evitar errar feio.",
+          "prob-1-tag": "confiança",
+          "prob-1-body": "O portfólio é bom. A primeira call confirma. Depois disso, é aposta.",
+          "prob-2-tag": "velocidade",
+          "prob-2-body": "Vaga aberta, agenda cheia de entrevista. Cada semana é um sprint escorrendo.",
+          "prob-3-tag": "senioridade real",
+          "prob-3-body": "Sênior no LinkedIn. Pleno na sprint. Você descobre na terceira semana.",
+          "prob-4-tag": "cobertura",
+          "prob-4-body": "Pessoa não pode trabalhar hoje. Quem cobre? Pra quem você liga?",
+          "guia-label": "// quem somos",
+          "guia-h2": "A Taller faz produto desde 2012.",
+          "guia-p1": "Nesse tempo construímos referências fortes pra dentro: como selecionamos pessoas, como trabalhamos, como damos e recebemos feedback. <em>Nada disso para</em> quando uma pessoa que selecionamos vai trabalhar no seu time.",
+          "guia-p2": "Nosso filtro interno olha fit cultural antes da técnica. A gente não coloca ninguém na frente de um cliente que não consegue tomar iniciativa, que não consegue discordar, ou que não opera bem em remoto.",
+          "guia-p3": "Essa parte do trabalho acontece <strong>antes</strong> da alocação. Não durante.",
+          "guia-legacy-label": "// quem já confiou",
+          "plano-label": "// como funciona",
+          "plano-h2": "Três passos. Cancela com 30 dias de aviso.",
+          "plano-s1-title": "Conta o que precisa",
+          "plano-s1-body": "Stack, senioridade, contexto. 30 minutos. A gente sabe se tem match antes da call acabar.",
+          "plano-s2-title": "Apresentamos um perfil",
+          "plano-s2-body": "Match feito por gente que conhece o bench e o seu contexto. Aprovado no filtro interno. Pronto em 10–15 dias úteis.",
+          "plano-s3-title": "Começa a entregar",
+          "plano-s3-body": "Integrado ao seu time. Calibragem com você. Segue sendo Taller, com suporte e retaguarda. Substituição se não rolar.",
+          "plano-agreement-label": "// o acordo",
+          "plano-agreement-1": "Sem taxa de adesão",
+          "plano-agreement-2": "Sem fidelidade anual",
+          "plano-agreement-3": "30 dias de aviso pra encerrar",
+          "plano-agreement-4": "Substituição garantida",
+          "plano-agreement-5": "100% dedicado, nunca dividido entre clientes",
           "social-label": "// OUTPUT: TRUST_LOG",
           "social-h2": "Quem já contou com a gente.",
           "social-q1": "O dev da Taller virou uma das pessoas mais sêniores do meu time em seis meses. Não trocaria por contratação local.",
@@ -2374,44 +2379,6 @@
           "res-fail-l2": "Pagar caro por um dev que <span class=\"strikethrough\">entrega</span> pede pra sair no terceiro trimestre.",
           "res-fail-l3": "Achar um fornecedor que <span class=\"strikethrough\">cumpre</span> some depois do fechamento.",
           "res-fail-l4": "<span class=\"warn-tag\">// warn</span>Gerenciar <span class=\"strikethrough\">um colega de time</span> um estranho que você onboarda sozinho.",
-          "plano-label": "// EXEC: HOW_IT_WORKS",
-          "plano-h2": "Três passos. Encerra com 30 dias de aviso.",
-          "plano-c1-title": "Conta o que precisa",
-          "plano-c1-body": "Stack, senioridade, contexto. 30 minutos. A gente sabe se tem match antes da call acabar.",
-          "plano-c2-title": "Apresentamos um perfil",
-          "plano-c2-body": "Match feito por gente que conhece o bench e o seu contexto. Aprovado no nosso filtro interno. Pronto pra começar em 10–15 dias úteis.",
-          "plano-c3-title": "Começa a entregar",
-          "plano-c3-body": "Integrado ao seu time. Calibragem com você. Segue sendo Taller, com suporte e retaguarda. Substituição se não rolar.",
-          "plano-c4-title": "O acordo",
-          "plano-c4-body": "Sem taxa de adesão. Sem fidelidade anual. 30 dias de aviso pra encerrar. Substituição garantida. 100% dedicado, nunca dividido entre clientes.",
-          "guia-label": "// EXEC: WHO_WE_ARE",
-          "guia-h2": "A Taller faz produto desde 2012.",
-          "guia-p1": "Nesse tempo, construímos referências fortes pra dentro: como selecionamos pessoas, como trabalhamos, como damos e recebemos feedback. Nada disso para quando uma pessoa que selecionamos vai trabalhar no seu time.",
-          "guia-p2": "Nosso filtro interno olha fit cultural antes da técnica. A gente não coloca ninguém na frente de um cliente que não consegue tomar iniciativa, que não consegue discordar, ou que não opera bem em remoto. Essa parte do trabalho acontece antes da alocação, não durante.",
-          "guia-legacy-label": "// empresas que já confiaram na taller",
-          "guia-phase1-name": "Seleção",
-          "guia-phase1-body": "Antes de qualquer alocação, a pessoa passa pelo nosso filtro interno. Cultural antes da técnica.",
-          "guia-phase2-name": "Match",
-          "guia-phase2-body": "Pareamento feito por gente que conhece tanto os perfis quanto o seu contexto.",
-          "guia-phase3-name": "Integração",
-          "guia-phase3-body": "A pessoa trabalha dentro do seu time. O nosso fica acessível.",
-          "guia-phase4-name": "Suporte",
-          "guia-phase4-body": "Canal aberto durante o contrato todo.",
-          "prob-label": "// ERR_LOG: HIRING",
-          "prob-h2": "Contratar pessoa sênior é, na maior parte, evitar errar feio.",
-          "prob-sub": "Você precisa de gente sênior, agora. Cada caminho tem o jeito específico de dar ruim. Esses são os que aparecem.",
-          "prob-c1-badge": "[ ERR: TRUST ]",
-          "prob-c1-title": "Confiança no fornecedor",
-          "prob-c1-body": "Primeira vez com esse fornecedor. O portfólio é bom. A primeira call confirma. Depois disso, é aposta.",
-          "prob-c2-badge": "[ ERR: SPEED ]",
-          "prob-c2-title": "Velocidade",
-          "prob-c2-body": "Vaga sênior aberta. Agenda cheia de entrevista. Cada semana é um sprint escorrendo.",
-          "prob-c3-badge": "[ ERR: SENIORITY ]",
-          "prob-c3-title": "Senioridade real",
-          "prob-c3-body": "Sênior no LinkedIn. Pleno na sprint. Você descobre na terceira semana.",
-          "prob-c4-badge": "[ ERR: NO_BACKUP ]",
-          "prob-c4-title": "Cobertura",
-          "prob-c4-body": "Pessoa não pode trabalhar hoje. Férias, médico, qualquer coisa. Quem cobre? Pra quem você liga?",
           'skip-link': 'Pular para o conteúdo',
           'nav-cta': 'Falar com a Taller',
           'hero-eyebrow': '// EXEC: TALLER_ALLOCATION',
@@ -2421,6 +2388,36 @@
           'hero-clients-label': 'clientes atuais'
         },
         en: {
+          "prob-label": "// problem",
+          "prob-h2": "Hiring senior engineers is mostly about avoiding bad calls.",
+          "prob-1-tag": "trust",
+          "prob-1-body": "The portfolio looks good. The first call confirms. After that, you're guessing.",
+          "prob-2-tag": "speed",
+          "prob-2-body": "Role open, calendar full of interviews. Each week is a sprint slipping.",
+          "prob-3-tag": "real seniority",
+          "prob-3-body": "Senior on the LinkedIn profile. Mid-level in the sprint. You find out in week three.",
+          "prob-4-tag": "backup",
+          "prob-4-body": "Person can't work today. Who covers? Who do you call?",
+          "guia-label": "// who we are",
+          "guia-h2": "Taller has been building product since 2012.",
+          "guia-p1": "Over that time we built strong internal references for how we select people, how we work, how we give and take feedback. <em>None of that stops</em> when a person we've selected goes to work inside your team.",
+          "guia-p2": "Our internal filter looks at cultural fit before technical depth. We don't put anyone in front of a client who can't take initiative, can't disagree, or can't operate remote-native.",
+          "guia-p3": "That part of the work happens <strong>before</strong> allocation. Not during.",
+          "guia-legacy-label": "// who has trusted us",
+          "plano-label": "// how it works",
+          "plano-h2": "Three steps. Cancel anytime with 30 days.",
+          "plano-s1-title": "Tell us what you need",
+          "plano-s1-body": "Stack, seniority, context. 30 minutes. We'll know if there's a match before the call ends.",
+          "plano-s2-title": "We introduce a profile",
+          "plano-s2-body": "Pairing made by people who know our bench and your context. Internally vetted. Ready in 10–15 business days.",
+          "plano-s3-title": "They start shipping",
+          "plano-s3-body": "Embedded with your team. Calibrated with you. Still Taller, with support and backup. Replace anytime if it isn't working.",
+          "plano-agreement-label": "// the deal",
+          "plano-agreement-1": "No setup fee",
+          "plano-agreement-2": "No annual lock-in",
+          "plano-agreement-3": "30-day notice to end",
+          "plano-agreement-4": "Guaranteed replacement",
+          "plano-agreement-5": "100% dedicated, never split between clients",
           "social-label": "// OUTPUT: TRUST_LOG",
           "social-h2": "People who've worked with us.",
           "social-q1": "Our Taller engineer became one of our most senior people in six months. I wouldn't trade them for a local hire.",
@@ -2456,44 +2453,6 @@
           "res-fail-l2": "Pay top dollar for an engineer who <span class=\"strikethrough\">ships</span> leaves by Q3.",
           "res-fail-l3": "Find a vendor that <span class=\"strikethrough\">delivers</span> disappears after signing.",
           "res-fail-l4": "<span class=\"warn-tag\">// warn</span>Manage <span class=\"strikethrough\">a teammate</span> a stranger you have to onboard alone.",
-          "plano-label": "// EXEC: HOW_IT_WORKS",
-          "plano-h2": "Three steps. Cancel anytime with 30 days.",
-          "plano-c1-title": "Tell us what you need",
-          "plano-c1-body": "Stack, seniority, context. 30 minutes. We'll know if there's a match before the call ends.",
-          "plano-c2-title": "We introduce a profile",
-          "plano-c2-body": "Pairing made by people who know our bench and your context. Internally vetted. Ready to start in 10–15 business days.",
-          "plano-c3-title": "They start shipping",
-          "plano-c3-body": "Embedded with your team. Calibrated with you. Still Taller, with support and backup. Replace anytime if it isn't working.",
-          "plano-c4-title": "The deal",
-          "plano-c4-body": "No setup fee. No annual lock-in. 30-day notice to end. Guaranteed replacement if needed. 100% dedicated, never split between clients.",
-          "guia-label": "// EXEC: WHO_WE_ARE",
-          "guia-h2": "Taller has been building product since 2012.",
-          "guia-p1": "Over that time we built strong internal references for how we select people, how we work, how we give and take feedback. None of that stops when a person we've selected goes to work inside your team.",
-          "guia-p2": "Our internal filter looks at cultural fit first and technical depth second. We don't put anyone in front of a client who can't take initiative, can't disagree, or can't operate remote-native. That part of the work happens before allocation, not during.",
-          "guia-legacy-label": "// companies that have trusted taller",
-          "guia-phase1-name": "Selection",
-          "guia-phase1-body": "Before any allocation, the person goes through our internal filter. Cultural before technical.",
-          "guia-phase2-name": "Match",
-          "guia-phase2-body": "Pairing made by people who know both the profiles and your context.",
-          "guia-phase3-name": "Integration",
-          "guia-phase3-body": "The person works inside your team. Ours stays accessible.",
-          "guia-phase4-name": "Support",
-          "guia-phase4-body": "Open channel during the entire contract.",
-          "prob-label": "// ERR_LOG: HIRING",
-          "prob-h2": "Hiring senior engineers is mostly about avoiding bad calls.",
-          "prob-sub": "You need senior developers, now. Every path forward has its own way of going wrong. These are the ones that actually show up.",
-          "prob-c1-badge": "[ ERR: TRUST ]",
-          "prob-c1-title": "Trust",
-          "prob-c1-body": "First time with this vendor. The portfolio looks good. The first call confirms. After that, you're guessing.",
-          "prob-c2-badge": "[ ERR: SPEED ]",
-          "prob-c2-title": "Speed",
-          "prob-c2-body": "Senior role open. Calendar full of interviews. Each week is a sprint slipping.",
-          "prob-c3-badge": "[ ERR: SENIORITY ]",
-          "prob-c3-title": "Real seniority",
-          "prob-c3-body": "Senior on the LinkedIn profile. Mid-level in the sprint. You only find out in week three.",
-          "prob-c4-badge": "[ ERR: NO_BACKUP ]",
-          "prob-c4-title": "Backup",
-          "prob-c4-body": "Person can't work today. Vacation, doctor, anything. Who covers? Who do you call?",
           'skip-link': 'Skip to content',
           'nav-cta': 'Talk to us',
           'hero-eyebrow': '// EXEC: TALLER_ALLOCATION',
@@ -2579,6 +2538,22 @@
         }
       }
 
+
+
+      // ── Section-specific .in trigger for prob-item, timeline-step, guia-essay ──
+      if ('IntersectionObserver' in window) {
+        const inIO = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('in');
+              inIO.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.4, rootMargin: '0px 0px -10% 0px' });
+
+        document.querySelectorAll('.prob-item, .timeline-step, .guia-essay')
+          .forEach((el) => inIO.observe(el));
+      }
 
       // ── Magnetic interactions — .magnetic elements drift toward the cursor on hover
       if (fine && !prefersReducedMotion) {
