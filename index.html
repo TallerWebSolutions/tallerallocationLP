@@ -103,18 +103,9 @@
     }
 
     /* ══════════════════════════════════ RESET + BASE ══════════════════════════════════ */
-    *,
-    *::before,
-    *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-    html {
-      scroll-behavior: smooth;
-      -webkit-text-size-adjust: 100%;
-    }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 
     body {
       background: var(--black);
@@ -131,9 +122,7 @@
     body.loading { overflow: hidden; }
 
     img, svg { display: block; max-width: 100%; }
-
     button { font: inherit; color: inherit; background: none; border: 0; }
-
     ::selection { background: var(--gold); color: var(--black); }
 
     /* ══════════════════════════════════ TYPOGRAPHY ══════════════════════════════════ */
@@ -144,12 +133,7 @@
       letter-spacing: -0.02em;
       color: var(--white);
     }
-
-    p {
-      color: var(--silver);
-      line-height: 1.7;
-    }
-
+    p { color: var(--silver); line-height: 1.7; }
     a { color: inherit; text-decoration: none; }
 
     .label {
@@ -172,7 +156,6 @@
       z-index: 1000;
       transition: top 0.2s var(--ease);
     }
-
     .skip-link:focus { top: 8px; }
 
     /* ══════════════════════════════════ SCROLL PROGRESS ══════════════════════════════════ */
@@ -198,7 +181,6 @@
       display: flex;
       pointer-events: all;
     }
-
     #loader.done { pointer-events: none; }
 
     .loader-half {
@@ -207,7 +189,6 @@
       background: var(--black);
       transition: transform 1s var(--ease-curtain);
     }
-
     #loader.done .loader-left  { transform: translateX(-100%); }
     #loader.done .loader-right { transform: translateX(100%); }
 
@@ -220,16 +201,13 @@
       opacity: 1;
       transition: opacity 0.35s ease;
     }
-
     .loader-logo svg { height: 32px; width: auto; display: block; }
-
     #loader.done .loader-logo { opacity: 0; }
 
     /* ══════════════════════════════════ CUSTOM CURSOR ══════════════════════════════════ */
     @media (hover: hover) and (pointer: fine) {
       body:not(.loading) { cursor: none; }
-      body:not(.loading) a,
-      body:not(.loading) button { cursor: none; }
+      body:not(.loading) a, body:not(.loading) button { cursor: none; }
     }
 
     #cursor-dot, #cursor-ring {
@@ -242,7 +220,6 @@
       opacity: 0;
       will-change: transform;
     }
-
     body.cursor-ready #cursor-dot,
     body.cursor-ready #cursor-ring { opacity: 1; }
 
@@ -263,7 +240,6 @@
       transition: border-color 0.3s var(--ease), opacity 0.3s var(--ease),
         width 0.3s var(--ease), height 0.3s var(--ease), margin 0.3s var(--ease);
     }
-
     body.cursor-ready #cursor-ring { opacity: 0.45; }
 
     #cursor-ring.hovering {
@@ -298,7 +274,6 @@
         box-shadow 0.3s var(--ease), border-color 0.3s var(--ease),
         opacity 0.3s var(--ease);
     }
-
     @media (hover: hover) and (pointer: fine) {
       .btn { cursor: none; }
     }
@@ -312,7 +287,6 @@
       background: var(--heat-gradient);
       color: var(--white);
     }
-
     .btn-primary::before, .btn-gold::before {
       content: '';
       position: absolute;
@@ -325,36 +299,28 @@
       transition: opacity 0.3s var(--ease), filter 0.3s var(--ease);
       animation: glow-fade 3s ease-in-out infinite;
     }
-
     .btn-primary:hover::before, .btn-gold:hover::before {
       opacity: 0.55;
       filter: blur(18px);
     }
-
     .btn-primary:hover, .btn-primary:active,
     .btn-gold:hover, .btn-gold:active {
       background: linear-gradient(90deg, var(--flame), #b01a20);
     }
-
     .btn-primary:focus-visible, .btn-gold:focus-visible {
       outline: none;
       box-shadow: 0 0 0 3px rgba(230, 76, 40, 0.55);
     }
-
     .btn-primary:disabled, .btn-primary[aria-disabled="true"],
     .btn-gold:disabled, .btn-gold[aria-disabled="true"] {
       background: linear-gradient(90deg, rgba(230, 76, 40, 0.35), rgba(218, 32, 55, 0.35));
       color: rgba(255, 255, 255, 0.45);
       pointer-events: none;
     }
-
     .btn-primary:disabled::before, .btn-primary[aria-disabled="true"]::before,
     .btn-gold:disabled::before, .btn-gold[aria-disabled="true"]::before { opacity: 0; }
 
-    .btn-alternate {
-      background: #111111;
-      color: var(--white);
-    }
+    .btn-alternate { background: #111111; color: var(--white); }
     .btn-alternate:hover, .btn-alternate:active { background: #2a2a2a; }
     .btn-alternate:focus-visible {
       outline: none;
@@ -390,10 +356,7 @@
       pointer-events: none;
     }
 
-    .btn-alert {
-      background: #b71c2e;
-      color: var(--white);
-    }
+    .btn-alert { background: #b71c2e; color: var(--white); }
     .btn-alert:hover, .btn-alert:active { background: #8f1422; }
     .btn-alert:focus-visible {
       outline: none;
@@ -419,43 +382,31 @@
       50%      { opacity: 0.45; filter: blur(18px); }
     }
 
-    /* ══════════════════════════════════
-       MOTION PRIMITIVES
-       reveal · split text · line reveal · heat pulse · gold sweep
-       ══════════════════════════════════ */
-
-    /* Reveal — translateY in */
+    /* ══════════════════════════════════ MOTION PRIMITIVES ══════════════════════════════════ */
     .reveal {
       opacity: 0;
       transform: translateY(32px);
       transition: opacity 0.85s var(--ease-reveal), transform 0.85s var(--ease-reveal);
       will-change: opacity, transform;
     }
-
-    /* Reveal — translateX left */
     .reveal-left {
       opacity: 0;
       transform: translateX(-36px);
       transition: opacity 0.85s var(--ease-reveal), transform 0.85s var(--ease-reveal);
       will-change: opacity, transform;
     }
-
-    /* Reveal — translateX right */
     .reveal-right {
       opacity: 0;
       transform: translateX(36px);
       transition: opacity 0.85s var(--ease-reveal), transform 0.85s var(--ease-reveal);
       will-change: opacity, transform;
     }
-
-    /* Reveal — scale up */
     .reveal-scale {
       opacity: 0;
       transform: scale(0.94);
       transition: opacity 0.85s var(--ease-reveal), transform 0.85s var(--ease-reveal);
       will-change: opacity, transform;
     }
-
     .reveal.in,
     .reveal-left.in,
     .reveal-right.in,
@@ -463,27 +414,15 @@
       opacity: 1;
       transform: none;
     }
+    .reveal[style*="--i"] { transition-delay: calc(var(--i, 0) * 80ms); }
 
-    /* Stagger via custom property (parent sets --i, children use it) */
-    .reveal[style*="--i"] {
-      transition-delay: calc(var(--i, 0) * 80ms);
-    }
-
-    /* Split text — each char fades in sequentially */
-    .split-ready {
-      visibility: hidden;
-    }
-
-    .split-ready.ready {
-      visibility: visible;
-    }
-
+    .split-ready { visibility: hidden; }
+    .split-ready.ready { visibility: visible; }
     .split-ready .word {
       display: inline-block;
       overflow: hidden;
       vertical-align: bottom;
     }
-
     .split-ready .char {
       display: inline-block;
       opacity: 0;
@@ -491,23 +430,11 @@
       transition: opacity 0.32s var(--ease), transform 0.55s var(--ease);
       transition-delay: calc(var(--char-index, 0) * 16ms);
     }
+    .split-ready.in .char { opacity: 1; transform: translateY(0); }
 
-    .split-ready.in .char {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .line-reveal { clip-path: inset(0 0 100% 0); transition: clip-path 1.2s var(--ease); }
+    .line-reveal.in { clip-path: inset(0 0 0% 0); }
 
-    /* Line reveal — clip-path top to bottom */
-    .line-reveal {
-      clip-path: inset(0 0 100% 0);
-      transition: clip-path 1.2s var(--ease);
-    }
-
-    .line-reveal.in {
-      clip-path: inset(0 0 0% 0);
-    }
-
-    /* Heat pulse — gradient clipped to text, shifting forever */
     .heat-pulse {
       background: var(--heat-gradient);
       background-size: 200% auto;
@@ -516,13 +443,11 @@
       color: transparent;
       animation: heat-pulse-shift 3s ease-in-out infinite;
     }
-
     @keyframes heat-pulse-shift {
       0%, 100% { background-position: 0% center; }
       50%      { background-position: 100% center; }
     }
 
-    /* Gold sweep — underline that grows on demand */
     .gold {
       color: var(--heat);
       background: linear-gradient(90deg, var(--heat), var(--gold)) no-repeat left bottom;
@@ -530,25 +455,110 @@
       transition: background-size 0.8s var(--ease);
       padding-bottom: 2px;
     }
+    .gold.sweep { background-size: 100% 2px; }
 
-    .gold.sweep {
-      background-size: 100% 2px;
+    /* ══════════════════════════════════ NAVIGATION ══════════════════════════════════ */
+    nav.site-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 22px 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: var(--border);
+      transition: background 0.6s var(--ease), border-color 0.6s var(--ease);
+    }
+
+    nav.site-nav[data-bg="carbon"] {
+      background: rgba(27, 27, 29, 0.78);
+    }
+
+    .nav-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--white);
+      font-family: var(--mono);
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: -0.01em;
+    }
+
+    .nav-logo svg { height: 22px; width: auto; }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .nav-link {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--graphite);
+      letter-spacing: 0.08em;
+      text-transform: lowercase;
+      transition: color 0.3s var(--ease);
+    }
+
+    .nav-link:hover,
+    .nav-link:focus-visible {
+      color: var(--gold);
+      outline: none;
+    }
+
+    .nav-cta {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      color: var(--silver);
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.3s var(--ease);
+    }
+
+    .nav-cta::before,
+    .nav-cta::after {
+      content: '[';
+      font-family: var(--pixel);
+      color: var(--graphite);
+      transition: color 0.3s var(--ease), transform 0.3s var(--ease);
+    }
+    .nav-cta::after { content: ']'; }
+
+    .nav-cta:hover,
+    .nav-cta:focus-visible {
+      color: var(--white);
+      outline: none;
+    }
+    .nav-cta:hover::before,
+    .nav-cta:focus-visible::before { color: var(--heat); transform: translateX(-2px); }
+    .nav-cta:hover::after,
+    .nav-cta:focus-visible::after { color: var(--heat); transform: translateX(2px); }
+
+    @media (max-width: 820px) {
+      nav.site-nav { padding: 16px 24px; }
+      .nav-menu { display: none; }
     }
 
     /* ══════════════════════════════════ REDUCED MOTION ══════════════════════════════════ */
     @media (prefers-reduced-motion: reduce) {
-      *,
-      *::before,
-      *::after {
+      *, *::before, *::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
       }
-
       #loader { display: none; }
       #cursor-dot, #cursor-ring { display: none; }
-
       .reveal, .reveal-left, .reveal-right, .reveal-scale,
       .split-ready, .split-ready .char,
       .line-reveal {
@@ -557,7 +567,6 @@
         clip-path: none !important;
         visibility: visible !important;
       }
-
       @media (hover: hover) and (pointer: fine) {
         body:not(.loading) { cursor: auto; }
         .btn { cursor: pointer; }
@@ -583,6 +592,21 @@
   <div id="cursor-dot" aria-hidden="true"></div>
   <div id="cursor-ring" aria-hidden="true"></div>
 
+  <nav class="site-nav" aria-label="Principal">
+    <a href="#main" class="nav-logo" aria-label="Taller — início">
+      <svg width="80" height="22" viewBox="0 0 80 22" xmlns="http://www.w3.org/2000/svg">
+        <text x="0" y="17" font-family="Geist Mono, monospace" font-weight="700" font-size="17" fill="currentColor" letter-spacing="0.02em">taller</text>
+      </svg>
+    </a>
+
+    <div class="nav-menu" role="menubar">
+      <a class="nav-link" role="menuitem" href="https://blog.taller.net.br/manifestaller/" target="_blank" rel="noopener">manifestaller</a>
+      <a class="nav-link" role="menuitem" href="https://tallerinnovation.vercel.app" target="_blank" rel="noopener">innovation</a>
+    </div>
+
+    <a class="nav-cta" href="#cta-final">Falar com a Taller</a>
+  </nav>
+
   <main id="main">
     <!-- LP sections will land here, one at a time, starting with the Hero. -->
   </main>
@@ -598,7 +622,6 @@
         document.body.classList.add('cursor-ready');
         loader.classList.add('done');
       };
-
       if (document.readyState === 'complete') {
         requestAnimationFrame(finishLoad);
       } else {
@@ -652,8 +675,7 @@
         });
       }
 
-      // ── Split text — wraps each char in a <span> with --char-index ──
-      // Targets: any element with class "split-text" (becomes split-ready after processing)
+      // ── Split text ──────────────────────────
       document.querySelectorAll('.split-text').forEach((el) => {
         const text = el.textContent;
         el.textContent = '';
@@ -679,11 +701,10 @@
         el.classList.add('split-ready', 'ready');
       });
 
-      // ── Reveal observer — adds .in when element enters viewport ──
+      // ── Reveal observer ────────────────────
       const revealTargets = document.querySelectorAll(
         '.reveal, .reveal-left, .reveal-right, .reveal-scale, .split-ready, .line-reveal'
       );
-
       if ('IntersectionObserver' in window) {
         const io = new IntersectionObserver((entries) => {
           entries.forEach((entry) => {
@@ -692,19 +713,13 @@
               io.unobserve(entry.target);
             }
           });
-        }, {
-          threshold: 0.15,
-          rootMargin: '0px 0px -10% 0px',
-        });
-
+        }, { threshold: 0.15, rootMargin: '0px 0px -10% 0px' });
         revealTargets.forEach((el) => io.observe(el));
       } else {
-        // Fallback: just show everything
         revealTargets.forEach((el) => el.classList.add('in'));
       }
 
-      // ── Gold sweep — triggered on demand by adding .sweep class ──
-      // Auto-trigger on elements with class "gold-auto" when they enter viewport
+      // ── Gold sweep auto ────────────────────
       const goldAutos = document.querySelectorAll('.gold-auto');
       if (goldAutos.length && 'IntersectionObserver' in window) {
         const goldIO = new IntersectionObserver((entries) => {
@@ -716,6 +731,21 @@
           });
         }, { threshold: 0.5 });
         goldAutos.forEach((el) => goldIO.observe(el));
+      }
+
+      // ── Nav bg switch based on visible section ──
+      // Sections with data-bg="carbon" trigger the nav to take the carbon translucent bg.
+      const nav = document.querySelector('nav.site-nav');
+      const sections = document.querySelectorAll('main > section[data-bg]');
+      if (sections.length && 'IntersectionObserver' in window) {
+        const navIO = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+              nav.setAttribute('data-bg', entry.target.dataset.bg);
+            }
+          });
+        }, { threshold: [0.5, 0.75] });
+        sections.forEach((s) => navIO.observe(s));
       }
     })();
   </script>
