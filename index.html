@@ -857,6 +857,144 @@
       .err-card { padding: 24px; }
     }
 
+    /* ══════════════════════════════════ GUIA ══════════════════════════════════ */
+    #guia {
+      background: var(--black);
+      border-bottom: var(--border);
+    }
+
+    .guia-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 140px 60px;
+    }
+
+    .guia-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .guia-text .label { display: inline-block; margin-bottom: 20px; }
+    .guia-text h2 { font-size: clamp(1.9rem, 3.5vw, 3rem); margin-bottom: 28px; max-width: 540px; }
+    .guia-text p { margin-bottom: 18px; line-height: 1.8; max-width: 540px; }
+
+    .guia-legacy {
+      margin-top: 48px;
+      padding-top: 32px;
+      border-top: var(--border);
+    }
+
+    .guia-legacy .label { display: block; margin-bottom: 18px; }
+
+    .guia-legacy-strip {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 32px 48px;
+      font-family: var(--mono);
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.16em;
+      color: var(--graphite);
+      text-transform: uppercase;
+    }
+
+    .guia-legacy-strip span { transition: color 0.3s var(--ease); }
+    .guia-legacy-strip span:hover { color: var(--silver); }
+
+    .guia-visual {
+      position: relative;
+      background: linear-gradient(160deg, #16121c 0%, #08060c 100%);
+      border: 1px solid rgba(249, 201, 114, 0.15);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03), 0 30px 60px -20px rgba(0, 0, 0, 0.6);
+      padding: 4px;
+      aspect-ratio: 1 / 1.05;
+      overflow: hidden;
+    }
+
+    .guia-visual::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 15%, rgba(230, 76, 40, 0.18), transparent 45%),
+        radial-gradient(circle at 80% 85%, rgba(249, 201, 114, 0.12), transparent 50%);
+      pointer-events: none;
+    }
+
+    .guia-visual::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+      background-size: 8px 8px;
+      -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+              mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .phase-grid {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    .phase-card {
+      position: relative;
+      padding: 36px 28px;
+      border-right: 1px solid rgba(255, 255, 255, 0.06);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      transition: background 0.4s var(--ease);
+      overflow: hidden;
+    }
+
+    .phase-card:nth-child(2n) { border-right: 0; }
+    .phase-card:nth-child(n+3) { border-bottom: 0; }
+
+    .phase-card:hover { background: rgba(230, 76, 40, 0.05); }
+
+    .phase-num {
+      font-family: var(--pixel);
+      font-size: 1.4rem;
+      color: var(--heat);
+      letter-spacing: 0.06em;
+      margin-bottom: 18px;
+      transition: color 0.3s var(--ease);
+    }
+
+    .phase-card:hover .phase-num { color: var(--gold); }
+
+    .phase-name {
+      font-family: var(--mono);
+      font-weight: 700;
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      color: var(--silver);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      transition: color 0.3s var(--ease);
+    }
+
+    .phase-card:hover .phase-name { color: var(--white); }
+
+    .phase-body { font-size: 0.86rem; color: var(--graphite); line-height: 1.6; }
+
+    @media (max-width: 1024px) {
+      .guia-grid { grid-template-columns: 1fr; gap: 60px; }
+      .guia-visual { aspect-ratio: 1 / 0.85; max-width: 560px; }
+    }
+
+    @media (max-width: 600px) {
+      .guia-inner { padding: 100px 24px; }
+      .guia-grid { gap: 48px; }
+      .phase-card { padding: 28px 20px; }
+    }
+
     /* ══════════════════════════════════ REDUCED MOTION ══════════════════════════════════ */
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
@@ -991,6 +1129,54 @@
             <h3 data-i18n="prob-c4-title">Cobertura</h3>
             <p data-i18n="prob-c4-body">Pessoa não pode trabalhar hoje. Férias, médico, qualquer coisa. Quem cobre? Pra quem você liga?</p>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="guia" data-bg="black" aria-labelledby="guia-heading">
+      <div class="guia-inner">
+        <div class="guia-grid">
+          <div class="guia-text">
+            <span class="label reveal" data-i18n="guia-label">// EXEC: WHO_WE_ARE</span>
+            <h2 id="guia-heading" class="reveal" data-i18n="guia-h2">A Taller faz produto desde 2012.</h2>
+            <p class="reveal" data-i18n="guia-p1">Nesse tempo, construímos referências fortes pra dentro: como selecionamos pessoas, como trabalhamos, como damos e recebemos feedback. Nada disso para quando uma pessoa que selecionamos vai trabalhar no seu time.</p>
+            <p class="reveal" style="--i: 1" data-i18n="guia-p2">Nosso filtro interno olha fit cultural antes da técnica. A gente não coloca ninguém na frente de um cliente que não consegue tomar iniciativa, que não consegue discordar, ou que não opera bem em remoto. Essa parte do trabalho acontece antes da alocação, não durante.</p>
+
+            <div class="guia-legacy reveal" style="--i: 2">
+              <span class="label" data-i18n="guia-legacy-label">// empresas que já confiaram na taller</span>
+              <div class="guia-legacy-strip" aria-label="Clientes legados">
+                <span>Ebanx</span>
+                <span>RDStation</span>
+                <span>Coca-Cola</span>
+                <span>Natura</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="guia-visual reveal" style="--i: 1">
+            <div class="phase-grid">
+              <article class="phase-card">
+                <div class="phase-num">01</div>
+                <div class="phase-name" data-i18n="guia-phase1-name">Seleção</div>
+                <p class="phase-body" data-i18n="guia-phase1-body">Antes de qualquer alocação, a pessoa passa pelo nosso filtro interno. Cultural antes da técnica.</p>
+              </article>
+              <article class="phase-card">
+                <div class="phase-num">02</div>
+                <div class="phase-name" data-i18n="guia-phase2-name">Match</div>
+                <p class="phase-body" data-i18n="guia-phase2-body">Pareamento feito por gente que conhece tanto os perfis quanto o seu contexto.</p>
+              </article>
+              <article class="phase-card">
+                <div class="phase-num">03</div>
+                <div class="phase-name" data-i18n="guia-phase3-name">Integração</div>
+                <p class="phase-body" data-i18n="guia-phase3-body">A pessoa trabalha dentro do seu time. O nosso fica acessível.</p>
+              </article>
+              <article class="phase-card">
+                <div class="phase-num">04</div>
+                <div class="phase-name" data-i18n="guia-phase4-name">Suporte</div>
+                <p class="phase-body" data-i18n="guia-phase4-body">Canal aberto durante o contrato todo.</p>
+              </article>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -1308,6 +1494,19 @@
       // ── i18n — pt/en toggle ─────────────────
       const translations = {
         pt: {
+          "guia-label": "// EXEC: WHO_WE_ARE",
+          "guia-h2": "A Taller faz produto desde 2012.",
+          "guia-p1": "Nesse tempo, construímos referências fortes pra dentro: como selecionamos pessoas, como trabalhamos, como damos e recebemos feedback. Nada disso para quando uma pessoa que selecionamos vai trabalhar no seu time.",
+          "guia-p2": "Nosso filtro interno olha fit cultural antes da técnica. A gente não coloca ninguém na frente de um cliente que não consegue tomar iniciativa, que não consegue discordar, ou que não opera bem em remoto. Essa parte do trabalho acontece antes da alocação, não durante.",
+          "guia-legacy-label": "// empresas que já confiaram na taller",
+          "guia-phase1-name": "Seleção",
+          "guia-phase1-body": "Antes de qualquer alocação, a pessoa passa pelo nosso filtro interno. Cultural antes da técnica.",
+          "guia-phase2-name": "Match",
+          "guia-phase2-body": "Pareamento feito por gente que conhece tanto os perfis quanto o seu contexto.",
+          "guia-phase3-name": "Integração",
+          "guia-phase3-body": "A pessoa trabalha dentro do seu time. O nosso fica acessível.",
+          "guia-phase4-name": "Suporte",
+          "guia-phase4-body": "Canal aberto durante o contrato todo.",
           "prob-label": "// ERR_LOG: HIRING",
           "prob-h2": "Contratar pessoa sênior é, na maior parte, evitar errar feio.",
           "prob-sub": "Você precisa de gente sênior, agora. Cada caminho tem o jeito específico de dar ruim. Esses são os que aparecem.",
@@ -1332,6 +1531,19 @@
           'hero-clients-label': 'clientes atuais'
         },
         en: {
+          "guia-label": "// EXEC: WHO_WE_ARE",
+          "guia-h2": "Taller has been building product since 2012.",
+          "guia-p1": "Over that time we built strong internal references for how we select people, how we work, how we give and take feedback. None of that stops when a person we've selected goes to work inside your team.",
+          "guia-p2": "Our internal filter looks at cultural fit first and technical depth second. We don't put anyone in front of a client who can't take initiative, can't disagree, or can't operate remote-native. That part of the work happens before allocation, not during.",
+          "guia-legacy-label": "// companies that have trusted taller",
+          "guia-phase1-name": "Selection",
+          "guia-phase1-body": "Before any allocation, the person goes through our internal filter. Cultural before technical.",
+          "guia-phase2-name": "Match",
+          "guia-phase2-body": "Pairing made by people who know both the profiles and your context.",
+          "guia-phase3-name": "Integration",
+          "guia-phase3-body": "The person works inside your team. Ours stays accessible.",
+          "guia-phase4-name": "Support",
+          "guia-phase4-body": "Open channel during the entire contract.",
           "prob-label": "// ERR_LOG: HIRING",
           "prob-h2": "Hiring senior engineers is mostly about avoiding bad calls.",
           "prob-sub": "You need senior developers, now. Every path forward has its own way of going wrong. These are the ones that actually show up.",
