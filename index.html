@@ -560,7 +560,7 @@
       z-index: 0;
       pointer-events: none;
       opacity: 0;
-      transition: opacity 1.2s var(--ease) 0.4s;
+      transition: opacity 2.5s var(--ease) 0.9s;
     }
 
     #heroCanvas.ready {
@@ -872,8 +872,8 @@
         const ctx = canvas.getContext('2d');
         const HEAT = [230, 76, 40];
         const GRAPHITE = [135, 135, 135];
-        const NODE_BASE = 1.5;
-        const NODE_PEAK = 5.5;
+        const NODE_BASE = 2.5;
+        const NODE_PEAK = 10;
 
         let W = 0, H = 0;
         let nodes = [];
@@ -886,9 +886,9 @@
         const easeInCubic  = (x) => x * x * x;
 
         function pulseEnvelope(t) {
-          if (t < 0.3) return easeOutCubic(t / 0.3);
-          if (t < 0.5) return 1;
-          if (t < 1.6) return 1 - easeInCubic((t - 0.5) / 1.1);
+          if (t < 0.5) return easeOutCubic(t / 0.5);
+          if (t < 1.4) return 1;
+          if (t < 2.8) return 1 - easeInCubic((t - 1.4) / 1.4);
           return 0;
         }
 
@@ -956,7 +956,7 @@
             n.y = n.oy + Math.cos(t * 1.1 + n.phaseY) * n.amp;
             if (n.pulseT >= 0) {
               n.pulseT += 1 / 60;
-              if (n.pulseT > 1.6) n.pulseT = -1;
+              if (n.pulseT > 2.8) n.pulseT = -1;
             }
           }
 
@@ -972,11 +972,11 @@
               const d2 = dx * dx + dy * dy;
               if (d2 > connRadius * connRadius) continue;
               const d = Math.sqrt(d2);
-              const baseAlpha = (1 - d / connRadius) * 0.10;
+              const baseAlpha = (1 - d / connRadius) * 0.18;
               const bPulse = b.pulseT >= 0 ? pulseEnvelope(b.pulseT) : 0;
               const boost = Math.max(aPulse, bPulse);
               if (boost > 0) {
-                const a2 = Math.min(0.45, baseAlpha * (1 + boost * 4));
+                const a2 = Math.min(0.65, baseAlpha * (1 + boost * 4));
                 ctx.strokeStyle = `rgba(230, 76, 40, ${a2})`;
               } else {
                 ctx.strokeStyle = `rgba(135, 135, 135, ${baseAlpha})`;
@@ -992,7 +992,7 @@
           for (const n of nodes) {
             let size = NODE_BASE;
             let r = GRAPHITE[0], g = GRAPHITE[1], b = GRAPHITE[2];
-            let alpha = 0.35;
+            let alpha = 0.5;
 
             if (n.pulseT >= 0) {
               const p = pulseEnvelope(n.pulseT);
@@ -1000,9 +1000,9 @@
               r = Math.round(GRAPHITE[0] + (HEAT[0] - GRAPHITE[0]) * p);
               g = Math.round(GRAPHITE[1] + (HEAT[1] - GRAPHITE[1]) * p);
               b = Math.round(GRAPHITE[2] + (HEAT[2] - GRAPHITE[2]) * p);
-              alpha = 0.35 + p * 0.65;
-              ctx.shadowColor = `rgba(230, 76, 40, ${p * 0.7})`;
-              ctx.shadowBlur = 16 * p;
+              alpha = 0.5 + p * 0.5;
+              ctx.shadowColor = `rgba(230, 76, 40, ${p * 0.85})`;
+              ctx.shadowBlur = 28 * p;
             } else {
               ctx.shadowBlur = 0;
             }
@@ -1018,14 +1018,15 @@
           if (now - lastPulseAt > nextPulseDelay) {
             triggerPulse();
             lastPulseAt = now;
-            nextPulseDelay = 1500 + Math.random() * 1800;
+            nextPulseDelay = 2400 + Math.random() * 2200;
           }
         }
 
         function start() {
           resize();
           canvas.classList.add('ready');
-          lastPulseAt = performance.now();
+          // Push the first pulse out so the entrance has room to land
+          lastPulseAt = performance.now() + 1800;
           rafId = requestAnimationFrame(tick);
         }
 
