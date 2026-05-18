@@ -741,6 +741,22 @@
       color: var(--silver);
     }
 
+    .hero-marquee__item img {
+      height: 28px;
+      width: auto;
+      max-width: 140px;
+      display: block;
+      filter: brightness(0) invert(1);
+      opacity: 0.4;
+      transition: opacity 0.4s var(--ease), filter 0.4s var(--ease);
+    }
+
+    .hero-marquee__item:hover img {
+      opacity: 1;
+      filter: none;
+    }
+
+
     @keyframes marquee-scroll {
       0%   { transform: translateX(0); }
       100% { transform: translateX(-50%); }
@@ -1601,13 +1617,13 @@
           <span class="label" data-i18n="hero-clients-label">clientes atuais</span>
         </div>
         <div class="hero-marquee__track">
-          <span class="hero-marquee__item">Bloom</span>
+          <span class="hero-marquee__item"><img src="https://framerusercontent.com/images/6eJRI0HJNE6IRKPfNhyQjK90N9Q.png" alt="Bloom" loading="lazy"></span>
           <span class="hero-marquee__item">STRV</span>
-          <span class="hero-marquee__item">Bloom</span>
+          <span class="hero-marquee__item"><img src="https://framerusercontent.com/images/6eJRI0HJNE6IRKPfNhyQjK90N9Q.png" alt="Bloom" loading="lazy"></span>
           <span class="hero-marquee__item">STRV</span>
-          <span class="hero-marquee__item">Bloom</span>
+          <span class="hero-marquee__item"><img src="https://framerusercontent.com/images/6eJRI0HJNE6IRKPfNhyQjK90N9Q.png" alt="Bloom" loading="lazy"></span>
           <span class="hero-marquee__item">STRV</span>
-          <span class="hero-marquee__item">Bloom</span>
+          <span class="hero-marquee__item"><img src="https://framerusercontent.com/images/6eJRI0HJNE6IRKPfNhyQjK90N9Q.png" alt="Bloom" loading="lazy"></span>
           <span class="hero-marquee__item">STRV</span>
         </div>
       </div>
