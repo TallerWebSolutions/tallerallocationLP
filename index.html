@@ -742,17 +742,35 @@
     }
 
     .hero-marquee__item img {
-      height: 28px;
       width: auto;
-      max-width: 140px;
       display: block;
       filter: brightness(0) invert(1);
       opacity: 0.4;
       transition: opacity 0.4s var(--ease), filter 0.4s var(--ease);
     }
 
+    /* Per-logo sizing — visually balance the wordmarks */
+    .hero-marquee__item img[alt="Bloom"] {
+      height: 22px;
+      max-width: 110px;
+    }
+
+    .hero-marquee__item img[alt="STRV"] {
+      height: 28px;
+      max-width: 90px;
+    }
+
     .hero-marquee__item:hover img {
       opacity: 1;
+    }
+
+    /* Bloom — dark navy logo invisible on black, lighten via brightness boost */
+    .hero-marquee__item:hover img[alt="Bloom"] {
+      filter: brightness(2.8) saturate(1.2);
+    }
+
+    /* STRV — already bright red (#EF0D33), just drop the filter */
+    .hero-marquee__item:hover img[alt="STRV"] {
       filter: none;
     }
 
